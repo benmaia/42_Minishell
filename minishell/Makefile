@@ -18,7 +18,7 @@ BIN			=	$(BIN_DIR)/$(NAME)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR)
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I ~/.brew/opt/readline/include
 
 all: $(NAME)
 
@@ -26,7 +26,7 @@ $(NAME): $(BIN)
 
 $(BIN):	$(OBJ) | $(BIN_DIR)
 	@make -s -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) -o $(@) $(^) -L$(LIBFT_DIR) -lft
+	@$(CC) $(CFLAGS) -lft -lreadline -o $(@) $(^) -L$(LIBFT_DIR) -lft -L ~/.brew/opt/readline/lib
 	@echo "$(GREEN)[ Minishell is ready to use ! ] $(RESET)"
 
 $(OBJ_DIR)/%.o:	srcs/%.c | $(BUILD_DIR)

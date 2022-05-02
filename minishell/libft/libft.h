@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 19:48:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/02/28 21:06:57 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/05/02 20:09:45 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s, char const *set);
 
 char	**ft_split(char const *s, char c);
+
+char	**ft_split_minishell(char const *s, char c);
 
 void	*ft_calloc(size_t n, size_t size);
 

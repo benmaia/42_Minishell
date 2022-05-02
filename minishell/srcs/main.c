@@ -6,13 +6,39 @@
 /*   By: bmiguel- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:12 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/04/14 17:39:40 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/05/02 20:07:11 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main()
+void	init_data(t_data *d)
 {
-	printf("Hello World\n");
+	d->arg = NULL;
+	d->buf = NULL;
 }
+
+int main(int ac, char **av, char **envp)
+{
+	t_data	d;
+	int		i;
+
+	(void)ac;
+	(void)av;
+	(void)envp;
+	init_data(&d);
+	while (1)
+	{
+		d.buf = readline(WHITE"AI MEU PEN > "ORANGE1);
+		if (!ft_strncmp(d.buf, "exit\0", ft_strlen(d.buf)))
+			exit(1);
+		d.arg = ft_split_minishell(d.buf, ' ');
+		i = -1;
+		while (d.arg[++i])
+			ft_printf("%s\n", d.arg[i]);
+	}
+	return (0);
+}
+
+
+/* "\e[1;32m AI \e[1;37m MEU \e[1;31m PEN \e[1;37m > " */
