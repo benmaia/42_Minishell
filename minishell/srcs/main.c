@@ -21,7 +21,7 @@ void	init_data(t_data *d)
 int main(int ac, char **av, char **envp)
 {
 	t_data	d;
-	int		i;
+	int	i;
 
 	(void)ac;
 	(void)av;

@@ -18,15 +18,23 @@ BIN			=	$(BIN_DIR)/$(NAME)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I ~/.brew/opt/readline/include
+OS = $(shell uname)
+
+ifeq ($(OS), Darwin)
+	CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I ~/.brew/opt/readline/include
+	READLINE = ~/.brew/opt/readline/lib
+else
+	CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I /usr/include/readline
+	READLINE = /usr/include/readline
+endif
 
 all: $(NAME)
 
-$(NAME): $(BIN)
+$(NAME): $(BIN) | $(BUILD_DIR)
 
 $(BIN):	$(OBJ) | $(BIN_DIR)
 	@make -s -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) -lft -lreadline -o $(@) $(^) -L$(LIBFT_DIR) -lft -L ~/.brew/opt/readline/lib
+	@$(CC) $(CFLAGS) -lft -lreadline -o $(@) $(^) -L$(LIBFT_DIR) -lft -L $(READLINE)
 	@echo "$(GREEN)[ Minishell is ready to use ! ] $(RESET)"
 
 $(OBJ_DIR)/%.o:	srcs/%.c | $(BUILD_DIR)
