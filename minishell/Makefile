@@ -20,23 +20,7 @@ BIN		=	$(BIN_DIR)/$(NAME)
 
 CC = gcc
 
-OS = $(shell uname)
-
-ifeq ($(OS), Darwin)
-	CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
-	READLINE = ~/.brew/opt/readline/lib
-	ifeq ("$(wildcard $(READLINE))", "")
-        	@echo "Directory does not exist."
-        	@brew install readline
-	endif
-else
-	CFLAGS	 = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
-	READLINE = /usr/lib/x86_64-linux-gnu 
-	ifeq ("$(wildcard $(READLINE))", "")
-        	@echo "Directory does not exist."
-        	@sudo apt-get install libreadline-dev
-	endif
-endif
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
 
 all: $(NAME)
 
@@ -44,7 +28,7 @@ $(NAME): $(BUILD_DIR) $(BIN)
 
 $(BIN): $(OBJ) | $(BIN_DIR)
 	@make -s -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) -o $(@) $(^) -L$(LIBFT_DIR) -lft -L $(READLINE) -lreadline
+	@$(CC) $(CFLAGS) -o $(@) $(^) -L$(LIBFT_DIR) -lft -L $(READLINE_DIR) -lreadline
 	@echo "$(GREEN)[ Minishell is ready to use ! ] $(RESET)"
 
 $(OBJ_DIR)/%.o:	srcs/%.c | $(BUILD_DIR)
