@@ -23,7 +23,7 @@ CC = gcc
 OS = $(shell uname)
 
 ifeq ($(OS), Darwin)
-	CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I ~/.brew/opt/readline/include
+	CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
 	READLINE = ~/.brew/opt/readline/lib
 else
 	CFLAGS	 = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
@@ -32,9 +32,9 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(BIN) | $(BUILD_DIR)
+$(NAME): $(BUILD_DIR) $(BIN)
 
-$(BIN):	$(OBJ) | $(BIN_DIR)
+$(BIN): $(OBJ) | $(BIN_DIR)
 	@make -s -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) -o $(@) $(^) -L$(LIBFT_DIR) -lft -L $(READLINE) -lreadline
 	@echo "$(GREEN)[ Minishell is ready to use ! ] $(RESET)"
