@@ -25,9 +25,17 @@ OS = $(shell uname)
 ifeq ($(OS), Darwin)
 	CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
 	READLINE = ~/.brew/opt/readline/lib
+	ifeq ("$(wildcard $(READLINE))", "")
+        	@echo "Directory does not exist."
+        	@brew install readline
+	endif
 else
 	CFLAGS	 = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
 	READLINE = /usr/lib/x86_64-linux-gnu 
+	ifeq ("$(wildcard $(READLINE))", "")
+        	@echo "Directory does not exist."
+        	@sudo apt-get install libreadline-dev
+	endif
 endif
 
 all: $(NAME)
