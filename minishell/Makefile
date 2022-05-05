@@ -1,20 +1,22 @@
 # Colors #
 GREEN		=	\033[0;32m
 YELLOW		=	\033[0;33m
-RED			=	\033[0;31m
+RED		=	\033[0;31m
 RESET		=	\033[0m
 
 NAME = minishell
 
-LIBFT_DIR	=	libft
-SRC			=	srcs/main.c
+LIBFT_DIR	=	libs/libft
+READLINE_DIR	=	libs/readline
 
-OBJ			=	$(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
+SRC		=	srcs/main.c
+OBJ		=	$(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
+
 INC_DIR		=	inc
 BUILD_DIR	=	./build
 BIN_DIR		=	$(BUILD_DIR)/bin
 OBJ_DIR		=	$(BUILD_DIR)/objects
-BIN			=	$(BIN_DIR)/$(NAME)
+BIN		=	$(BIN_DIR)/$(NAME)
 
 CC = gcc
 
@@ -24,8 +26,8 @@ ifeq ($(OS), Darwin)
 	CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I ~/.brew/opt/readline/include
 	READLINE = ~/.brew/opt/readline/lib
 else
-	CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I /usr/include/readline
-	READLINE = /usr/include/readline
+	CFLAGS	 = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
+	READLINE = /usr/lib/x86_64-linux-gnu 
 endif
 
 all: $(NAME)
@@ -34,7 +36,7 @@ $(NAME): $(BIN) | $(BUILD_DIR)
 
 $(BIN):	$(OBJ) | $(BIN_DIR)
 	@make -s -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) -lft -lreadline -o $(@) $(^) -L$(LIBFT_DIR) -lft -L $(READLINE)
+	@$(CC) $(CFLAGS) -o $(@) $(^) -L$(LIBFT_DIR) -lft -L $(READLINE) -lreadline
 	@echo "$(GREEN)[ Minishell is ready to use ! ] $(RESET)"
 
 $(OBJ_DIR)/%.o:	srcs/%.c | $(BUILD_DIR)
