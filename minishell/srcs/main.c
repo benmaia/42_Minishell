@@ -18,10 +18,10 @@ void	init_data(t_data *d)
 	d->buf = NULL;
 }
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	t_data	d;
-	int	i;
+	int		i;
 
 	(void)ac;
 	(void)av;
@@ -39,6 +39,5 @@ int main(int ac, char **av, char **envp)
 	}
 	return (0);
 }
-
 
 /* "\e[1;32m AI \e[1;37m MEU \e[1;31m PEN \e[1;37m > " */
