@@ -1,26 +1,25 @@
 # Colors #
-GREEN		=	\033[0;32m
-YELLOW		=	\033[0;33m
-RED		=	\033[0;31m
-RESET		=	\033[0m
+GREEN				=	\033[0;32m
+YELLOW			=	\033[0;33m
+RED				=	\033[0;31m
+RESET				=	\033[0m
 
-NAME = minishell
+NAME 				= minishell
 
-LIBFT_DIR	=	libs/libft
+LIBFT_DIR		=	libs/libft
 READLINE_DIR	=	libs/readline
 
-SRC		=	srcs/main.c
-OBJ		=	$(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
+SRC				=	srcs/main.c
+OBJ				=	$(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
 
-INC_DIR		=	inc
-BUILD_DIR	=	./build
-BIN_DIR		=	$(BUILD_DIR)/bin
-OBJ_DIR		=	$(BUILD_DIR)/objects
-BIN		=	$(BIN_DIR)/$(NAME)
+INC_DIR			=	inc
+BUILD_DIR		=	./build
+BIN_DIR			=	$(BUILD_DIR)/bin
+OBJ_DIR			=	$(BUILD_DIR)/objects
+BIN				=	$(BIN_DIR)/$(NAME)
 
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
+CC 				= gcc
+CFLAGS 			= -Wall -Wextra -Werror -fsanitize=address -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
 
 all: $(NAME)
 
