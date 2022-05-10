@@ -2,8 +2,8 @@
 
 Install if you don't have
 
-''' bash
+```bash
 sudo apt-get install libreadline-dev
-'''
+```
 
 
