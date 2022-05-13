@@ -43,7 +43,7 @@ clean:
 
 fclean: clean
 	@make fclean -s -C $(LIBFT_DIR)
-	@rm -f minishell
+	@rm -f $(NAME)
 	@echo "$(RED)[ Minishell has been removed! ]$(RESET)"
 
 re: fclean all
