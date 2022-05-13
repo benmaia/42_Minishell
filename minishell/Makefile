@@ -7,7 +7,6 @@ RESET				=	\033[0m
 NAME 				= minishell
 
 LIBFT_DIR		=	libs/libft
-READLINE_DIR	=	libs/readline
 
 SRC				=	srcs/main.c
 OBJ				=	$(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
@@ -15,6 +14,11 @@ OBJ				=	$(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
 INC_DIR			=	inc
 BUILD_DIR		=	./build
 OBJ_DIR			=	$(BUILD_DIR)/objects
+ifeq ($(shell uname),Linux)
+	READLINE_DIR	=	/usr/include/readline
+else
+	READLINE_DIR	=	~/.brew/opt/readline/lib
+endif
 
 CC 				= gcc
 CFLAGS 			= -Wall -Wextra -Werror 
