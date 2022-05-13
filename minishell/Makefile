@@ -24,7 +24,10 @@ CC 				= gcc
 CFLAGS 			= -Wall -Wextra -Werror 
 INCLUDES			= -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
 
-all: $(BUILD_DIR) $(NAME)
+all: $(BUILD_DIR) $(NAME) readline
+
+readline:
+	@./libreadline.sh
 
 $(NAME): $(OBJ)
 	@make -s -C $(LIBFT_DIR)
