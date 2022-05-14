@@ -6,7 +6,7 @@
 /*   By: bmiguel- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/05/02 19:51:59 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/05/15 00:02:28 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@
 typedef struct s_data {
 	char	**arg;
 	char	*buf;
-} t_data;
+}	t_data;
 
 #endif

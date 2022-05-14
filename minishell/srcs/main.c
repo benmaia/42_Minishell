@@ -6,7 +6,7 @@
 /*   By: bmiguel- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:12 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/05/02 20:07:11 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/05/15 00:06:15 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av, char **envp)
 	init_data(&d);
 	while (1)
 	{
-		d.buf = readline(WHITE"AI MEU PEN > "ORANGE1);
+		d.buf = readline(ORANGE1"What do u want > "RES);
 		if (!ft_strncmp(d.buf, "exit\0", ft_strlen(d.buf)))
 			exit(1);
 		d.arg = ft_split_minishell(d.buf, ' ');
