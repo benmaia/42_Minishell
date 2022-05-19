@@ -6,7 +6,7 @@
 /*   By: bmiguel- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:12 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/05/19 16:16:58 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/05/19 17:56:40 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int ac, char **av, char **envp)
 		d.buf = readline(ORANGE1"What do u want > "RES);
 		if (!ft_strncmp(d.buf, "exit\0", ft_strlen(d.buf)))
 			exit(1);
-		d.arg = ft_split(d.buf, ' ');
+		d.arg = ft_split_minishell(d.buf, ' ');
 		i = -1;
 		while (d.arg[++i])
 			ft_printf("%s\n", d.arg[i]);
