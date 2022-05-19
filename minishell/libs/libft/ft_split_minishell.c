@@ -6,70 +6,61 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 00:58:27 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/05/02 20:28:45 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/05/19 17:13:22 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	nb_words(const char *str, char c)
+int	nbrquotes(char *s, int i)
 {
-	int	i;
-	int j;
-	int	flag;
-
-	i = 0;
-	j = -1;
-	flag = 0;
-	while (str[++j])
-	{
-		if (str[j] != c && flag == 0)
+		if (s[i] == 39)
 		{
-			flag = 1;
-			i++;
+				++i;
+				while (s[i] != 39)
+							i++;
 		}
-		else if (str[j] == c)
-			flag = 0;
-	}
-	return (i);
+		else if (s[i] == 34)
+		{
+				++i;
+				while (s[i] != 34)
+							i++;
+		}
+		return (i);
 }
 
-static char	*word_dup(const char *str, int start, int finish)
-{
-	char	*word;
-	int		i;
 
-	i = 0;
-	word = (char *)malloc(sizeof(char) * (finish - start + 1));
-	while (start < finish)
-		word[i++] = str[start++];
-	word[i] = '\0';
-	return (word);
+int	nbwords(char *s)
+{
+		int i;
+		int nb;
+		int flag;
+
+		i = -1;
+		flag = 0;
+		nb = 0;
+		while (s[++i])
+		{
+				i = nbrquotes(s, i);
+				if (s[i] != 32 && flag == 0)
+				{
+						flag = 1;
+						nb++;
+				}
+				else if (s[i] == 32)
+						flag = 0;
+		}
+		return (nb);
 }
 
-char    **ft_split_minishell(char const *s, char c)
+int main()
 {
-	size_t	i;
-	size_t	j;
-	int		index;
-	char	**split;
+		char *s;
+		s = "ola ola 'eu ola ola' 'ola ola' ol amigo ";
+		/*s = "ola ola ola 'ola ola ola' ola 'ola ola ola ola' ola";*/
+		int o;
 
-	split = (char **)malloc(sizeof(char *) * (nb_words(s, c) + 1));
-	if (!s || !split)
-		return (NULL);
-	i = -1;
-	j = 0;
-	index = -1;
-	while (++i <= ft_strlen(s))
-	{
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
-		{
-			split[j++] = word_dup(s, index, i);
-			index = -1;
-		}
-	}
-	split[j] = 0;
-	return (split);
+		o = nbwords(s);
+		printf("%d", o);
+		return (0);
 }
