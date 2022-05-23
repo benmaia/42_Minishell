@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 00:58:27 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/05/19 20:52:42 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:55:51 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,34 +81,41 @@ char	**ft_split_minishell(char const *s, char c)
 		index = -1;
 		while (++i < ft_strlen(s))
 		{
-				/*i = nbrquotes(s, i);*/
-				if (s[i] == 39 || s[i] == 34)
-						i = nbrquotes(s, i);
-				else if (s[i] != c && index < 0)
-							index = i;
+				if (s[i] != 39 && index < 0)
+					index = i;
+				else if ((s[i] == 39) || (i == ft_strlen(s) && index >= 0))
+				if ((s[i] != c && index < 0)
+					index = i;
 				else if ((s[i] == c) || (i == ft_strlen(s) && index >= 0))
-							{
-									split[j++] = word_dup(s, index, i);
-									index =-1;
-							}
+				{
+					split[j++] = word_dup(s, index, i);
+					index = -1;
+				}
+				/*if (s[i] != c && index < 0)*/
+							/*index = i;*/
+				/*else if ((s[i] == c) || (i == ft_strlen(s) && index >= 0))*/
+							/*{*/
+									/*split[j++] = word_dup(s, index, i);*/
+									/*index =-1;*/
+							/*}*/
 		}
 		split[j] = 0;
 		return (split);
 }
 
-int main()
-{
-		char *s;
-		s = "ola ola 'eu ola ola' 'ola ola' ol amigo ";
+/*int main()*/
+/*{*/
+		/*char *s;*/
+		/*s = "ola ola 'eu ola ola' 'ola ola' ol amigo ";*/
 		/*s = "ola ola ola 'ola ola ola' ola 'ola ola ola ola' ola";*/
-		int o;
-		char **ola;
+		/*int o;*/
+		/*char **ola;*/
 
-		o = nbwords(s, ' ');
-		printf("%d", o);
-		int i = -1;
-		ola =ft_split_minishell(s, ' ');
-		while (ola[++i])
-				  printf("%s\n", ola[i]);
-		return (0);
-}
+		/*o = nbwords(s, ' ');*/
+		/*printf("%d", o);*/
+		/*int i = -1;*/
+		/*ola =ft_split_minishell(s, ' ');*/
+		/*while (ola[++i])*/
+					/*printf("%s\n", ola[i]);*/
+		/*return (0);*/
+/*}*/
