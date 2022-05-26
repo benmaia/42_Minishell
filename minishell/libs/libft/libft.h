@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 19:48:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/05/02 20:09:45 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/05/26 23:14:03 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,13 @@ char	*ft_itoa(int n);
 
 t_list	*ft_lstnew(void *content);
 
-void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *n);
 
 int		ft_lstsize(t_list *lst);
 
 t_list	*ft_lstlast(t_list *lst);
 
-void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *n);
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 
