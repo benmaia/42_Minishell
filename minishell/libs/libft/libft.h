@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 19:48:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/05/26 23:14:03 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/05/27 18:17:18 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,32 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
+/*Replic of atoi*/
+/*Converts a string to an intenger*/
 int		ft_atoi(const char *str);
 
+/*Replica of bzero*/
+/*Set N bytes of a string to 0*/
 void	ft_bzero(void *str, size_t n);
 
+/*Replica of isalnum*/
+/*Checks if the arg is alphanumeric*/
 int		ft_isalnum(int arg);
 
+/*Replica of isalpha*/
+/*Checks if the arg is a letter*/
 int		ft_isalpha(int arg);
 
+/*Replica of isascii*/
+/*Checks if the arg is an ascii char*/
 int		ft_isascii(int arg);
 
+/*Replica of isdigit*/
+/*Checks if the arg is an int*/
 int		ft_isdigit(int arg);
 
+/*Replica of isprint*/
+/*Checks if the arg is a printable char*/
 int		ft_isprint(int arg);
 
 void	*ft_memcpy(void *dest, const void *src, size_t count);
@@ -67,6 +81,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 
 char	*ft_strdup(const char *str);
 
+/*Returns the str lenght*/
 size_t	ft_strlen(const char *str);
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);

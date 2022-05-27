@@ -1,10 +1,10 @@
 # Colors #
-GREEN				=	\033[0;32m
+GREEN			=	\033[0;32m
 YELLOW			=	\033[0;33m
 RED				=	\033[0;31m
-RESET				=	\033[0m
+RESET			=	\033[0m
 
-NAME 				= minishell
+NAME 			= minishell
 
 LIBFT_DIR		=	libs/libft
 
@@ -14,6 +14,7 @@ OBJ				=	$(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
 INC_DIR			=	inc
 BUILD_DIR		=	./build
 OBJ_DIR			=	$(BUILD_DIR)/objects
+
 ifeq ($(shell uname),Linux)
 	READLINE_DIR	=	/usr/include/readline
 else
@@ -24,7 +25,7 @@ CC 				= gcc
 CFLAGS 			= -Wall -Wextra -Werror 
 INCLUDES			= -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
 
-all: $(BUILD_DIR) $(NAME) readline
+all: $(BUILD_DIR) $(NAME)
 
 readline:
 	@./libreadline.sh
@@ -41,8 +42,8 @@ $(OBJ_DIR)/%.o:	srcs/%.c | $(BUILD_DIR)
 .SILENT = $(OBJ)
 
 $(BUILD_DIR):
-		@mkdir -p $(BUILD_DIR)
-		@mkdir -p $(OBJ_DIR) $(B_OBJ_DIR)
+	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(OBJ_DIR) $(B_OBJ_DIR)
 clean:
 	@make clean -s -C $(LIBFT_DIR)
 	@rm -rf $(BUILD_DIR)
