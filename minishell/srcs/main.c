@@ -6,11 +6,12 @@
 /*   By: bmiguel- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:12 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/05/27 18:06:06 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/05/28 01:00:31 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+#include <stdio.h>
 
 void	init_data(t_data *d)
 {
@@ -26,6 +27,7 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	(void)envp;
+	printf("h");
 	init_data(&d);
 	while (1)
 	{
