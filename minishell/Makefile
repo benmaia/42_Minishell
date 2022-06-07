@@ -1,29 +1,29 @@
 # Colors #
-GREEN			=	\033[0;32m
-YELLOW			=	\033[0;33m
-RED				=	\033[0;31m
-RESET			=	\033[0m
+GREEN					=	\033[0;32m
+YELLOW				=	\033[0;33m
+RED					=	\033[0;31m
+RESET					=	\033[0m
 
-NAME 			= minishell
+NAME 					= minishell
 
-LIBFT_DIR		=	libs/libft
+LIBFT_DIR			=	libft
 
-SRC				=	srcs/main.c
-OBJ				=	$(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
+SRC					=	srcs/main.c
+OBJ					=	$(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
 
-INC_DIR			=	inc
-BUILD_DIR		=	./build
-OBJ_DIR			=	$(BUILD_DIR)/objects
-
+INC_DIR				=	inc
 ifeq ($(shell uname),Linux)
+	BUILD_DIR		=	./build
+	OBJ_DIR			=	$(BUILD_DIR)/objects
+
 	READLINE_DIR	=	/usr/include/readline
 else
 	READLINE_DIR	=	~/.brew/opt/readline/lib
 endif
 
-CC 				= gcc
-CFLAGS 			= -Wall -Wextra -Werror 
-INCLUDES			= -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
+CC 					= gcc
+CFLAGS 				= -Wall -Wextra -Werror -fsanitize=address -g
+INCLUDES				= -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
 
 all: $(BUILD_DIR) $(NAME)
 
