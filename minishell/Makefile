@@ -1,45 +1,47 @@
 # Colors #
-GREEN					=	\033[0;32m
-YELLOW				=	\033[0;33m
-RED					=	\033[0;31m
-RESET					=	\033[0m
+GREEN		= \033[0;32m
+YELLOW		= \033[0;33m
+RED			= \033[0;31m
+RESET		= \033[0m
 
-NAME 					= minishell
+NAME		= minishell
 
-LIBFT_DIR			=	libft
+INC_DIR		= inc
+LIBFT_DIR	= libft
+BUILD_DIR	= build
+SRC_DIR		= srcs
+OBJ_DIR		= $(BUILD_DIR)/objects
 
-SRC					=	srcs/main.c
-OBJ					=	$(SRC:srcs/%.c=$(OBJ_DIR)/%.o)
+SRC			= $(SRC_DIR)/main.c
 
-INC_DIR				=	inc
-ifeq ($(shell uname),Linux)
-	BUILD_DIR		=	./build
-	OBJ_DIR			=	$(BUILD_DIR)/objects
+OBJ			= $(patsubst %.c, %.o, $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC)))
 
-	READLINE_DIR	=	/usr/include/readline
+ifeq ($(shell uname), Linux)
+	READLINE_DIR	= /usr/include/readline
 else
-	READLINE_DIR	=	~/.brew/opt/readline/lib
+	READLINE_DIR	= ~/.brew/opt/readline/lib
 endif
 
-CC 					= gcc
-CFLAGS 				= -Wall -Wextra -Werror -fsanitize=address -g
-INCLUDES				= -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
+CC			= gcc
+CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g
+INCLUDES	= -I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
+LINKS		= -L$(LIBFT_DIR) -lft -L$(READLINE_DIR) -lreadline
+
+.SILENT = $(OBJ)
 
 all: $(BUILD_DIR) $(NAME)
 
 readline:
-	@./libreadline.sh
+	@../libreadline.sh
 
 $(NAME): $(OBJ)
 	@make -s -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDES) -o $(@) $(^) -L$(LIBFT_DIR) -lft -L $(READLINE_DIR) -lreadline
+	@$(CC) $(CFLAGS) $(^) -o $(@) $(LINKS)
 	@echo "$(GREEN)[ Minishell is ready to use! ] $(RESET)"
 
-$(OBJ_DIR)/%.o:	srcs/%.c | $(BUILD_DIR)
-	@echo "$(GREEN)[ Creating ${@F} ]$(RESET)"
+$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c | $(BUILD_DIR)
+	@echo "$(GREEN)[ Creating $(notdir $@) ]$(RESET)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $(^) -o $(@)
-
-.SILENT = $(OBJ)
 
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)

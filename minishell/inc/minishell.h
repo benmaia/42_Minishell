@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmiguel- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/05/29 19:06:58 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:48:23 by pnoronha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 
 // Colors
-
 # define BLACK "\e[1;30m"
 # define RED "\e[1;31m"
 # define GREEN "\e[1;32m"
