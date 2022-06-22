@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/06/22 18:42:36 by pnoronha         ###   ########.fr       */
+/*   Updated: 2022/06/22 19:35:47 by pnoronha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "prompt.h"
+# include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -43,4 +44,4 @@ typedef struct s_data {
 
 void	ft_free(void *ptr);
 
-#endif
+#endif /* MINISHELL_H */
