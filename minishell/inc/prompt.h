@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   prompt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 17:39:12 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/06/22 18:41:13 by pnoronha         ###   ########.fr       */
+/*   Created: 2022/06/22 18:34:18 by pnoronha          #+#    #+#             */
+/*   Updated: 2022/06/22 18:38:00 by pnoronha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <readline/readline.h>
-#include <stdlib.h>
+#ifndef PROMPT_H
+# define PROMPT_H
 
-int main ()
+# include "minishell.h"
+
+typedef struct s_prompt
 {
-	t_data d;
+	char	*user;
+	char	*name;
+	char	*pwd;
+	char	*full_prompt;
+}	t_prompt;
 
-	while (1)
-	{
-		get_prompt();
-		d.buf = readline(pmpt()->full_prompt);
-		ft_free(pmpt()->full_prompt);
-		if (!ft_strncmp(d.buf, "exit\0", 5))
-			exit(1);
-	}
-	return(0);
-}
+t_prompt	*pmpt(void);
+void	get_prompt(void);
+
+#endif
