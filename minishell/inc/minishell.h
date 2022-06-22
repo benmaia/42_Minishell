@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/06/21 17:48:23 by pnoronha         ###   ########.fr       */
+/*   Updated: 2022/06/22 18:26:07 by pnoronha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,15 @@
 # define ORANGE1 "\033[38;5;214m"
 # define ORANGE2 "\033[38;5;202m"
 
+typedef struct s_args
+{
+	char			**cmd;
+	char			*token;
+}	t_args;
 typedef struct s_data {
 	char	**arg;
 	char	*buf;
 }	t_data;
+
 
 #endif
