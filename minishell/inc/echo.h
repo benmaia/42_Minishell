@@ -6,15 +6,17 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:39:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/02 16:46:05 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/03 11:22:13 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ECHO_H
 # define ECHO_H
 
-#include "../inc/minishell.h"
+#include "minishell.h"
 
+void	ft_echo(t_data *d);
 
+char	*quotes(t_data *d);
 
 #endif

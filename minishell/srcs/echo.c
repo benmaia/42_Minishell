@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:37:13 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/03 02:49:30 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/03 12:00:36 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,13 @@ char	*quotes(t_data *d)
 
 void	ft_echo(t_data *d)
 {
-	char	*text;
+	/*char	*text;*/
 
-	text = quotes(d);
-	if (!ft_strncmp(text, "echo -n ", 8))
-		printf("%s", ft_strchr(text, 'n') + 2);
+	/*text = quotes(d);*/
+	if (!ft_strncmp(d->buf, "echo -n ", 8))
+		printf("%s", ft_strchr(d->buf, 'n') + 2);
 	else
-		printf("%s\n", ft_strchr(text, ' ') + 1);
+		printf("%s\n", ft_strchr(d->buf, ' ') + 1);
 }
 
 /*int main(int argc, char **argv, char **envp)*/
