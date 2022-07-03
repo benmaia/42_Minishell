@@ -12,8 +12,10 @@ BUILD_DIR	=	build
 SRC_DIR		=	srcs
 OBJ_DIR		=	$(BUILD_DIR)/objects
 
-SRC			=	$(SRC_DIR)/main.c		\
-				$(SRC_DIR)/prompt.c		\
+SRC			=	$(SRC_DIR)/parser.c \
+				$(SRC_DIR)/echo.c\
+				#$(SRC_DIR)/cd.c		\
+				#$(SRC_DIR)/prompt.c		\
 				$(SRC_DIR)/free_clean.c
 
 OBJ			=	$(patsubst %.c, %.o, $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC)))
@@ -62,5 +64,8 @@ fclean: clean
 	@echo "$(RED)[ Minishell has been removed! ]$(RESET)"
 
 re: fclean all
+
+e: re
+	@./minishell
 
 .PHONY: all clean fclean re bonus

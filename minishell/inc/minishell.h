@@ -6,18 +6,20 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/06/22 19:35:47 by pnoronha         ###   ########.fr       */
+/*   Updated: 2022/07/03 12:30:59 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
-# include "prompt.h"
+# include "../libft/libft.h"
+/*# include "prompt.h"*/
+/*#include "cd.h"*/
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+/*# include "echo.h"*/
 
 // Colors
 # define BLACK "\e[1;30m"
@@ -32,16 +34,34 @@
 # define ORANGE1 "\033[38;5;214m"
 # define ORANGE2 "\033[38;5;202m"
 
+typedef struct s_env{
+	char				*var;
+	struct s_env	*next;
+}	t_env;
+
 typedef struct s_args
 {
 	char			**cmd;
 	char			*token;
+	struct s_args	*next;
 }	t_args;
+
 typedef struct s_data {
-	char	**arg;
 	char	*buf;
+	t_env	*env;
 }	t_data;
 
 void	ft_free(void *ptr);
+
+char	*pwd(void);
+
+
+
+void	ft_echo(t_data *d);
+
+char	*quotes(t_data *d);
+
+
+
 
 #endif /* MINISHELL_H */
