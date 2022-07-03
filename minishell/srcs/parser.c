@@ -58,10 +58,10 @@ void	ft_lst_add_back(t_env **env, t_env *new)
 	back->next = new;
 }
 
-int main (int argc, char **argv, char **envp)
-{
-	t_data d;
-	
+/*int main (int argc, char **argv, char **envp)*/
+/*{*/
+	/*t_data d;*/
+
 	(void) argc;
 	(void) argv;
 	(void) envp;
@@ -73,6 +73,8 @@ int main (int argc, char **argv, char **envp)
 		/*printf("%s\n", d.env->var);*/
 		/*d.env = d.env->next;*/
 	/*}*/
+	/*return (0);*/
+/*}*/
 	/*d.env[++i] = NULL;*/
 	while (1)
 	{
