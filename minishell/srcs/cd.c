@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:03:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/02 15:05:57 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:24:15 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	cd(t_data *d)
 	}
 	else if (!ft_strncmp(d->buf, "cd\0", 3))
 		chdir(getenv("HOME"));
+	else
+		perror("error");
 }
 
 /*int main(int argc, char **argv, char **envp)*/

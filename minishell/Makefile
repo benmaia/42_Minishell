@@ -14,7 +14,7 @@ OBJ_DIR		=	$(BUILD_DIR)/objects
 
 SRC			=	$(SRC_DIR)/parser.c \
 				$(SRC_DIR)/echo.c\
-				#$(SRC_DIR)/cd.c		\
+				$(SRC_DIR)/cd.c		\
 				#$(SRC_DIR)/prompt.c		\
 				$(SRC_DIR)/free_clean.c
 
