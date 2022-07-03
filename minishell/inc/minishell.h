@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/03 12:30:59 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:20:00 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-/*# include "echo.h"*/
+/*# include <echo.h>*/
 
 // Colors
 # define BLACK "\e[1;30m"
@@ -62,6 +62,8 @@ void	ft_echo(t_data *d);
 char	*quotes(t_data *d);
 
 
+void	cd(t_data *d);
+void	ft_pwd(void);
 
 
 #endif /* MINISHELL_H */
