@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 11:28:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/03 21:21:03 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/03 23:25:10 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	ft_lst_add_back(t_env **env, t_env *new)
 	back->next = new;
 }
 
-/*int main (int argc, char **argv, char **envp)*/
-/*{*/
-	/*t_data d;*/
+int main (int argc, char **argv, char **envp)
+{
+	t_data d;
 
 	(void) argc;
 	(void) argv;
