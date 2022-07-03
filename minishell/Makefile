@@ -64,4 +64,7 @@ fclean: clean
 
 re: fclean all
 
+e: re
+	@./minishell
+
 .PHONY: all clean fclean re bonus
