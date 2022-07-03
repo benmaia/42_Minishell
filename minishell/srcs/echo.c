@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:37:13 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/03 01:28:24 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/03 02:49:30 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,17 @@ int	double_quotes(t_data *d, int i)
 {
 	int	j;
 
-	while (d->buf[++i] != '\"')
+	while (d->buf[++i] != '\"' && d->buf[i])
 	{
 		if (d->buf[i] == '$')
 		{
 			ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
 			j = i;
-			while (d->buf[i] != ' ' && d->buf[i] != '\"' && d->buf[i] != '\'')
+			while (d->buf[i] != ' ' && d->buf[i] != '\"' 
+					&& d->buf[i] != '\'' && d->buf[i])
 				i++;
-			expand_var(d, i, j);
+			if (d->buf[i])
+				expand_var(d, i, j);
 			i--;
 		}
 	}
@@ -82,7 +84,7 @@ char	*quotes(t_data *d)
 		else if (d->buf[i] == '\'')
 		{
 			ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
-			while (d->buf[i] != '\'')
+			while (d->buf[i] != '\'' && d->buf[i])
 				i++;
 			ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
 		}
