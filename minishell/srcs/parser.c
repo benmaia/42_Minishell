@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 11:28:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/03 12:31:30 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/03 12:39:31 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ void	ft_lst_add_back(t_env **env, t_env *new)
 	back->next = new;
 }
 
-int main (int argc, char **argv, char **envp)
-{
-	t_data d;
+/*int main (int argc, char **argv, char **envp)*/
+/*{*/
+	/*t_data d;*/
 	
-	(void) argc;
-	(void) argv;
-	int i = -1;
-	d.env = malloc(sizeof(t_env));
-	while (envp[++i])
-	{
-		ft_lst_add_back(&d.env, ft_lst_new(envp[i]));
-		printf("%s\n", d.env->var);
-		d.env = d.env->next;
-	}
+	/*(void) argc;*/
+	/*(void) argv;*/
+	/*int i = -1;*/
+	/*d.env = malloc(sizeof(t_env));*/
+	/*while (envp[++i])*/
+	/*{*/
+		/*ft_lst_add_back(&d.env, ft_lst_new(envp[i]));*/
+		/*printf("%s\n", d.env->var);*/
+		/*d.env = d.env->next;*/
+	/*}*/
 	/*d.env[++i] = NULL;*/
 	/*while (1)*/
 	/*{*/
@@ -89,5 +89,5 @@ int main (int argc, char **argv, char **envp)
 		/*}*/
 		/*free (d.buf);*/
 	/*}*/
-	return (0);
-}
+	/*return (0);*/
+/*}*/
