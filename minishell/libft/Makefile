@@ -21,6 +21,7 @@ ft_strnstr.c ft_strrchr.c ft_strjoin.c\
 ft_tolower.c ft_toupper.c ft_strlcat.c ft_strncat.c\
 ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
 ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c\
+ft_lst_strprint.c ft_lst_intprint.c\
 ft_printf.c ft_printf_c.c ft_printf_d.c ft_printf_p.c\
 ft_printf_s.c ft_printf_u.c ft_printf_x.c ft_printf_xx.c\
 ft_putnbr_base.c ft_n_base_counter.c ft_n_pointer.c ft_func_select.c\

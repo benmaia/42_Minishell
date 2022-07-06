@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 19:48:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/05/29 18:32:27 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:38:15 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,12 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 /*the function ’f’. The ’del’ function is used to*/
 /*delete the content of a node if needed.*/
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+/*Prints a list with str in content*/
+void	ft_lst_strprint(t_list *list);
+
+/*Prints a list with int in content*/
+void	ft_lst_intprint(t_list *list);
 
 /*-------------||| PRINTF |||---------------*/
 
