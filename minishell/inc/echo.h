@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:39:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/03 11:22:13 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:30:43 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 
 void	ft_echo(t_data *d);
 
-char	*quotes(t_data *d);
+char	*quotes(t_data *d, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:37:13 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/03 21:24:43 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:30:12 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,17 @@ int	double_quotes(t_data *d, int i)
 	return (i);
 }
 
-char	*quotes(t_data *d)
+void	clean_extra_spaces(t_data *d, int i)
 {
-	int	i;
+	while (d->buf[++i] == ' ')
+	{
+		ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
+		i--;
+	}
+}
 
-	i = -1;
+char	*quotes(t_data *d, int i)
+{
 	while (d->buf[++i])
 	{
 		if (d->buf[i] == '\"')
@@ -80,6 +86,7 @@ char	*quotes(t_data *d)
 			ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
 			i = double_quotes(d, --i);
 			ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
+			i--;
 		}
 		else if (d->buf[i] == '\'')
 		{
@@ -90,15 +97,14 @@ char	*quotes(t_data *d)
 		}
 		else if (d->buf[i] == '$')
 			dollar_var(d, i);
+		else if (d->buf[i] == ' ')
+			clean_extra_spaces(d, i);
 	}
 	return (d->buf);
 }
 
 void	ft_echo(t_data *d)
 {
-	/*char	*text;*/
-
-	/*text = quotes(d);*/
 	if (!ft_strncmp(d->buf, "echo -n", 7))
 	{
 		if (!ft_strncmp(d->buf, "echo -n\0", 8))
@@ -117,25 +123,3 @@ void	ft_echo(t_data *d)
 	else
 		perror("error");
 }
-
-/*int main(int argc, char **argv, char **envp)*/
-/*{*/
-	/*t_data	d;*/
-
-	/*(void) argc;*/
-	/*(void) argv;*/
-	/*(void) envp;*/
-	/*while (1)*/
-	/*{*/
-		/*d.buf = readline("This promp > ");*/
-		/*if (!ft_strncmp(d.buf, "echo ", 5))*/
-			/*ft_echo(&d);*/
-		/*if (!ft_strncmp(d.buf, "exit\0", 5))*/
-		/*{*/
-			/*free (d.buf);*/
-			/*exit (1);*/
-		/*}*/
-		/*free (d.buf);*/
-	/*}*/
-	/*return (0);*/
-/*}*/
