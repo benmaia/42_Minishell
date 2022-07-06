@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/03 21:20:00 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:03:54 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-/*# include <echo.h>*/
+/*# include "echo.h"*/
 
 // Colors
 # define BLACK "\e[1;30m"
@@ -48,7 +48,7 @@ typedef struct s_args
 
 typedef struct s_data {
 	char	*buf;
-	t_env	*env;
+	t_list	*env;
 }	t_data;
 
 void	ft_free(void *ptr);
@@ -56,14 +56,19 @@ void	ft_free(void *ptr);
 char	*pwd(void);
 
 
+t_list	*init_env(char **envp);
 
 void	ft_echo(t_data *d);
 
-char	*quotes(t_data *d);
+char	*quotes(t_data *d, int i);
 
 
 void	cd(t_data *d);
 void	ft_pwd(void);
 
 
+void	ft_env(t_data *d);
+
+
+void	ft_export(t_data *d);
 #endif /* MINISHELL_H */
