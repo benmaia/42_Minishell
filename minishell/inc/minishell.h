@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/05 21:03:54 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/07 15:56:25 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,11 @@ char	*quotes(t_data *d, int i);
 void	cd(t_data *d);
 void	ft_pwd(void);
 
+void	ft_free_stack(t_list **list);
 
 void	ft_env(t_data *d);
 
+void	ft_unset(t_data *d);
 
 void	ft_export(t_data *d);
 #endif /* MINISHELL_H */
