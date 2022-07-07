@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 00:29:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/07 18:41:31 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/07 19:55:04 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	check_duplicates(t_data *d)
 	tmp = d->env;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->content, var, ft_strlen(var)))
+		if (!ft_strcmp(tmp->content, var))
 		{
 			free (var);
 			free (tmp->content);
