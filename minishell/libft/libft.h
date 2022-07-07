@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 19:48:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/05 17:38:15 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/07 19:56:24 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,10 @@ size_t	ft_strlcat(char *dest, const char *src, size_t n);
 /*Replica of strchr*/
 /*Returns the position of C in the STR*/
 char	*ft_strchr(const char *str, int c);
+
+/*Replica of strcmp*/
+/*Compares S1 and S2*/
+int	ft_strcmp(const char *s1, const char *s2);
 
 /*Replica of strncmp*/
 /*Compares N characters form S1 and S2*/
