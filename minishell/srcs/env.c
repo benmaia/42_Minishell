@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:50:14 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/06 00:29:42 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/06 23:53:20 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,34 @@
 #include "../inc/minishell.h"
 #include <stdio.h>
 
+void	ft_free_stack(t_list **list)
+{
+	t_list	*current;
+	t_list	*next;
+
+	if (!list)
+		return ;
+	current = *list;
+	while (current != NULL)
+	{
+		next = current->next;
+		free (current->content);
+		free (current);
+		current = next;
+	}
+	*list = NULL;
+}
+
 t_list	*init_env(char **envp)
 {
 	t_list	*env;
-	t_list	*tmp;
 	int i;
 
-	i = -1;
+	i = 0;
+	env = ft_lstnew(ft_strdup(envp[i]));
+	env->next = NULL;
 	while (envp[++i])
-	{
-		if (i == 0)
-		{
-			env = ft_lstnew(ft_strdup(envp[i]));
-			env->next = tmp;
-			tmp = env;
-		}
-		else
-		{
-			tmp->next = ft_lstnew(ft_strdup(envp[i]));
-			tmp = tmp->next;
-		}
-	}
-	tmp->next = NULL;
+		ft_lstadd_back(&env, ft_lstnew(ft_strdup(envp[i])));
 	return (env);
 }
 
