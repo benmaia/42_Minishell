@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/07 15:56:25 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/07 23:55:39 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,27 @@ typedef struct s_args
 	struct s_args	*next;
 }	t_args;
 
+typedef struct s_promp {
+	char	*cmd;
+	char	*token;
+	char	**exe;
+	struct	s_promp	*next;
+} t_promp;
+
 typedef struct s_data {
 	char	*buf;
 	t_list	*env;
+	t_promp	*p;
 }	t_data;
 
 void	ft_free(void *ptr);
 
 char	*pwd(void);
+
+
+t_promp	*ft_prompnew(char	*cmd);
+void	ft_prompadd(t_promp **p, t_promp *neww);
+void	ft_prompprint(t_promp *p);
 
 
 t_list	*init_env(char **envp);
@@ -71,6 +84,9 @@ void	ft_free_stack(t_list **list);
 void	ft_env(t_data *d);
 
 void	ft_unset(t_data *d);
+
+
+t_promp	*parser_promp(t_data *d, int i);
 
 void	ft_export(t_data *d);
 #endif /* MINISHELL_H */
