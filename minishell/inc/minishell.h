@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/03 21:20:00 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/08 16:43:09 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-/*# include <echo.h>*/
+/*# include "echo.h"*/
 
 // Colors
 # define BLACK "\e[1;30m"
@@ -46,9 +46,17 @@ typedef struct s_args
 	struct s_args	*next;
 }	t_args;
 
+typedef struct s_promp {
+	char	*cmd;
+	char	*token;
+	char	**exe;
+	struct	s_promp	*next;
+} t_promp;
+
 typedef struct s_data {
 	char	*buf;
-	t_env	*env;
+	t_list	*env;
+	t_promp	*p;
 }	t_data;
 
 void	ft_free(void *ptr);
@@ -56,14 +64,36 @@ void	ft_free(void *ptr);
 char	*pwd(void);
 
 
+t_promp	*ft_prompnew(char	*cmd);
+void	ft_prompadd(t_promp **p, t_promp *neww);
+void	ft_prompprint(t_promp *p);
+
+
+t_list	*init_env(char **envp);
 
 void	ft_echo(t_data *d);
 
-char	*quotes(t_data *d);
+char	*quotes(t_data *d, int i);
 
 
 void	cd(t_data *d);
 void	ft_pwd(void);
 
+void	ft_free_stack(t_list **list);
 
+void	ft_env(t_data *d);
+
+void	ft_unset(t_data *d);
+
+
+char	*ft_check_var(t_list *list, char *var);
+
+
+void	dollar_var(t_data *d, int i);
+void	expand_var(t_data *d, int i, int j);
+
+
+t_promp	*parser_promp(t_data *d, int i);
+
+void	ft_export(t_data *d);
 #endif /* MINISHELL_H */

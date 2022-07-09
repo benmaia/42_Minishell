@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.h                                             :+:      :+:    :+:   */
+/*   ft_lst_intprint.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/02 16:39:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/05 18:30:43 by bmiguel-         ###   ########.fr       */
+/*   Created: 2022/07/05 17:34:02 by bmiguel-          #+#    #+#             */
+/*   Updated: 2022/07/05 17:35:45 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ECHO_H
-# define ECHO_H
+#include "libft.h"
 
-#include "minishell.h"
-
-void	ft_echo(t_data *d);
-
-char	*quotes(t_data *d, int i);
-
-#endif
+void	ft_lst_intprint(t_list *list)
+{
+	while (list)
+	{
+		printf("%ld\n", (long)list->content);
+		list = list->next;
+	}
+}

@@ -5,94 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/03 11:28:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/03 23:25:10 by bmiguel-         ###   ########.fr       */
+/*   Created: 2022/07/07 22:01:59 by bmiguel-          #+#    #+#             */
+/*   Updated: 2022/07/08 00:00:23 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 #include <stdio.h>
 
-/*void	ft_env(t_data *d)*/
-/*{*/
-	/*int	i;*/
-
-	/*i = 0;*/
-	/*if (!ft_strncmp(d->buf, "env\0", 4))*/
-		/*while (d->env[i])*/
-			/*printf("%s\n", d->env[i++]);*/
-/*}*/
-
-t_env	*ft_lst_last(t_env *lst)
+int	doublee(t_data *d, int i)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	i++;
+	while (d->buf[i] != '\"')
+		i++;
+	return (i);
 }
 
-t_env	*ft_lst_new(void *content)
+int	simple(t_data *d, int i)
 {
-	t_env	*new;
-
-	new = (t_env *)malloc(sizeof (t_env));
-	if (!new)
-		return (NULL);
-	new->var = content;
-	new->next = NULL;
-	return (new);
+	i++;
+	while (d->buf[i] != '\'')
+		i++;
+	return (i);
 }
 
-void	ft_lst_add_back(t_env **env, t_env *new)
+t_promp	*parser_promp(t_data *d, int i)
 {
-	t_env	*back;
+	t_promp	*promp;
+	int		j;
 
-	back = *env;
-	if (!back)
+	promp = NULL;
+	j = 0;
+	while (d->buf[++i])
 	{
-		*env = new;
-		return ;
-	}
-	back = ft_lst_last(*env);
-	back->next = new;
-}
-
-int main (int argc, char **argv, char **envp)
-{
-	t_data d;
-
-	(void) argc;
-	(void) argv;
-	(void) envp;
-	/*int i = -1;*/
-	/*d.env = malloc(sizeof(t_env));*/
-	/*while (envp[++i])*/
-	/*{*/
-		/*ft_lst_add_back(&d.env, ft_lst_new(envp[i]));*/
-		/*printf("%s\n", d.env->var);*/
-		/*d.env = d.env->next;*/
-	/*}*/
-	/*return (0);*/
-/*}*/
-	/*d.env[++i] = NULL;*/
-	while (1)
-	{
-		d.buf = readline("This promp > ");
-		quotes(&d);
-		/*printf("%s\n", d.buf);*/
-		if (!ft_strncmp(d.buf, "pwd", 3))
-			ft_pwd();
-		if (!ft_strncmp(d.buf, "cd", 2))
-			cd(&d);
-		if (!ft_strncmp(d.buf, "echo", 4))
-			ft_echo(&d);
-		if (!ft_strncmp(d.buf, "exit\0", 5))
+		if (d->buf[i] == '\"')
+			i = doublee(d, i);
+		else if (d->buf[i] == '\'')
+			i = simple(d, i);
+		else if (d->buf[i] == '|')
 		{
-			free (d.buf);
-			exit (1);
+			ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i - j)));
+			j = i + 1;
 		}
-		free (d.buf);
 	}
-	return (0);
+	ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i - j)));
+	return (promp);
 }

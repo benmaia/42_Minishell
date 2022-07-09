@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.h                                             :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/02 16:39:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/05 18:30:43 by bmiguel-         ###   ########.fr       */
+/*   Created: 2022/07/05 16:55:34 by bmiguel-          #+#    #+#             */
+/*   Updated: 2022/07/05 17:07:23 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ECHO_H
-# define ECHO_H
+#ifndef ENV_H
+# define ENV_H
 
 #include "minishell.h"
 
-void	ft_echo(t_data *d);
-
-char	*quotes(t_data *d, int i);
+typedef struct s_envp{
+	char	*var;
+	struct s_env	*next;
+}	t_envp;
 
 #endif
+
+
+
+
+
