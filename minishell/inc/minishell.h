@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/07 23:55:39 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/08 16:43:09 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ void	ft_free_stack(t_list **list);
 void	ft_env(t_data *d);
 
 void	ft_unset(t_data *d);
+
+
+char	*ft_check_var(t_list *list, char *var);
+
+
+void	dollar_var(t_data *d, int i);
+void	expand_var(t_data *d, int i, int j);
 
 
 t_promp	*parser_promp(t_data *d, int i);

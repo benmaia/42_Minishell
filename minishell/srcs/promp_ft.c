@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list.c                                          :+:      :+:    :+:   */
+/*   promp_ft.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:15:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/07 22:45:33 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/09 19:54:41 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 #include <stdio.h>
 
+/*It prints all the elements*/
+/*in the t_prompt list*/
 void	ft_prompprint(t_promp *p)
 {
 	t_promp	*tmp;
@@ -25,6 +27,9 @@ void	ft_prompprint(t_promp *p)
 	}
 }
 
+/*Returns the pointer to*/
+/*the last element of the*/
+/*of the t_promp list*/
 t_promp	*ft_promplast(t_promp *p)
 {
 	if (!p)
@@ -34,6 +39,8 @@ t_promp	*ft_promplast(t_promp *p)
 	return (p);
 }
 
+/*Adds a new element in the end*/
+/*of the t_promp list*/
 void	ft_prompadd(t_promp **p, t_promp *neww)
 {
 	t_promp	*back;
@@ -48,6 +55,7 @@ void	ft_prompadd(t_promp **p, t_promp *neww)
 	back->next = neww;
 }
 
+/*Creates an element of type t_promp*/
 t_promp	*ft_prompnew(char	*cmd)
 {
 	t_promp	*new;

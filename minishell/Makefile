@@ -13,6 +13,8 @@ SRC_DIR		=	srcs
 OBJ_DIR		=	$(BUILD_DIR)/objects
 
 SRC			=	$(SRC_DIR)/unset.c \
+				$(SRC_DIR)/expand_var.c \
+				$(SRC_DIR)/parser_quotes.c \
 				$(SRC_DIR)/promp_ft.c \
 				$(SRC_DIR)/p.c \
 				$(SRC_DIR)/export.c \
