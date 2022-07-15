@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:57:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/09 18:16:01 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:51:23 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*Checks if the size of the content (x)*/
 /*or the variable (var) and returns the */
 /*size of the bigger one*/
-static int	check_size(int x, int z)
+int	check_size(int x, int z)
 {
 	if (x > z)
 		return (x);
@@ -93,10 +93,10 @@ void	ft_unset(t_data *d)
 {
 	char	*var;
 
-	if (!ft_strncmp(d->buf, "unset\0", 6)
-		|| !ft_strncmp(d->buf, "unset ", 6))
+	if (!ft_strncmp(d->p->cmd, "unset\0", 6)
+		|| !ft_strncmp(d->p->cmd, "unset ", 6))
 	{
-		var = ft_strdup(ft_strchr(d->buf, ' ') + 1);
+		var = ft_strdup(ft_strchr(d->p->cmd, ' ') + 1);
 		unset_var(d, var);
 		free (var);
 	}

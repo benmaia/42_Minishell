@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/08 16:43:09 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/14 22:37:13 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,16 @@ typedef struct s_data {
 	char	*buf;
 	t_list	*env;
 	t_promp	*p;
+	int		nbr_cmd;
 }	t_data;
 
 void	ft_free(void *ptr);
 
 char	*pwd(void);
+
+int	built_in(t_data *d);
+
+void	parsing_tokens(t_promp **p);
 
 
 t_promp	*ft_prompnew(char	*cmd);
@@ -70,10 +75,14 @@ void	ft_prompprint(t_promp *p);
 
 
 t_list	*init_env(char **envp);
+void	initialize_structs(t_data *d);
 
 void	ft_echo(t_data *d);
 
 char	*quotes(t_data *d, int i);
+
+
+void	ft_prompcmd(t_data *d);
 
 
 void	cd(t_data *d);
@@ -91,7 +100,13 @@ char	*ft_check_var(t_list *list, char *var);
 
 void	dollar_var(t_data *d, int i);
 void	expand_var(t_data *d, int i, int j);
+void	dollar_export(t_data *d, char *tmp, int i);
 
+
+void	free_prompt(t_promp **promp);
+
+
+int	check_size(int x, int z);
 
 t_promp	*parser_promp(t_data *d, int i);
 
