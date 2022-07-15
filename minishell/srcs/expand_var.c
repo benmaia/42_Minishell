@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:43:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/09 17:47:42 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/14 16:12:41 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ void	expand_var(t_data *d, int i, int j)
 	char	*p2;
 	char	*p3;
 
-	var = ft_substr(d->buf, j, i - j);
+	var = ft_substr(d->p->cmd, j, i - j);
 	if (!var)
 	{
 		invalid_var(var);
 		return ;
 	}
-	p = ft_substr(d->buf, 0, j);
-	p1 = ft_substr(d->buf, i, ft_strlen(d->buf));
+	p = ft_substr(d->p->cmd, 0, j);
+	p1 = ft_substr(d->p->cmd, i, ft_strlen(d->p->cmd));
 	p2 = ft_strjoin(p, ft_check_var(d->env, var));
 	p3 = ft_strjoin(p2, p1);
-	free (d->buf);
-	d->buf = ft_strdup(p3);
+	free (d->p->cmd);
+	d->p->cmd = ft_strdup(p3);
 	free (p);
 	free (p1);
 	free (p2);
@@ -64,10 +64,10 @@ void	dollar_var(t_data *d, int i)
 {
 	int	j;
 
-	ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
+	ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
 	j = i;
-	while (d->buf[i] != ' ' && d->buf[i] != '\"'
-		&& d->buf[i] != '\'' && d->buf[i])
+	while (d->p->cmd[i] != ' ' && d->p->cmd[i] != '\"'
+		&& d->p->cmd[i] != '\'' && d->p->cmd[i])
 			i++;
 	expand_var(d, i, j);
 }

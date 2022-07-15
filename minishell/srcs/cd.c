@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:03:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/09 17:35:12 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/10 22:21:00 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,21 +90,21 @@ void	cd(t_data *d)
 	t_cd	cd;
 
 	cd.valid_path = NULL;
-	if (!ft_strncmp(d->buf, "cd ~\0", 5))
+	if (!ft_strncmp(d->p->cmd, "cd ~\0", 5))
 		chdir(getenv("HOME"));
-	else if (!ft_strncmp(d->buf, "cd ", 3))
+	else if (!ft_strncmp(d->p->cmd, "cd ", 3))
 	{
 		getcwd(cd.path, sizeof(cd.path));
-		if (!d->buf)
+		if (!d->p->cmd)
 			exit (0);
-		cd.dest = ft_split(d->buf, ' ');
+		cd.dest = ft_split(d->p->cmd, ' ');
 		i = 0;
 		cd_path(&cd, i);
 		while (cd.dest[i])
 			free (cd.dest[i++]);
 		free (cd.dest);
 	}
-	else if (!ft_strncmp(d->buf, "cd\0", 3))
+	else if (!ft_strncmp(d->p->cmd, "cd\0", 3))
 		chdir(getenv("HOME"));
 	else
 		perror("error");

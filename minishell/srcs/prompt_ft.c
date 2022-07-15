@@ -1,17 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   promp_ft.c                                         :+:      :+:    :+:   */
+/*   prompt_ft.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:15:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/09 19:54:41 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/14 18:22:53 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 #include <stdio.h>
+
+void	ft_prompcmd(t_data *d)
+{
+	d->nbr_cmd = 1;
+	if (!d)
+		return ;
+	while (d->p->next)
+	{
+		d->nbr_cmd++;
+		d->p = d->p->next;
+	}
+	return ;
+}
 
 /*It prints all the elements*/
 /*in the t_prompt list*/
@@ -21,10 +34,7 @@ void	ft_prompprint(t_promp *p)
 
 	tmp = p;
 	while (tmp)
-	{
-		printf("%s\n", tmp->cmd);
 		tmp = tmp->next;
-	}
 }
 
 /*Returns the pointer to*/
