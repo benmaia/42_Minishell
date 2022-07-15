@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:40:25 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/09 19:52:38 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/11 19:04:12 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ int	double_quotes(t_data *d, int i)
 {
 	int	j;
 
-	while (d->buf[++i] != '\"' && d->buf[i])
+	while (d->p->cmd[++i] != '\"' && d->p->cmd[i])
 	{
-		if (d->buf[i] == '$')
+		if (d->p->cmd[i] == '$')
 		{
-			ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
+			ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
 			j = i;
-			while (d->buf[i] != ' ' && d->buf[i] != '\"'
-				&& d->buf[i] != '\'' && d->buf[i])
+			while (d->p->cmd[i] != ' ' && d->p->cmd[i] != '\"'
+				&& d->p->cmd[i] != '\'' && d->p->cmd[i])
 				i++;
-			if (d->buf[i])
+			if (d->p->cmd[i])
 				expand_var(d, i, j);
 			i--;
 		}
@@ -43,9 +43,9 @@ int	double_quotes(t_data *d, int i)
 /*it removes those spaces, cleaning the string*/
 void	clean_extra_spaces(t_data *d, int i)
 {
-	while (d->buf[++i] == ' ')
+	while (d->p->cmd[++i] == ' ')
 	{
-		ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
+		ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
 		i--;
 	}
 }
@@ -63,26 +63,26 @@ void	clean_extra_spaces(t_data *d, int i)
 /*to check if there is more then 1 space in a row*/
 char	*quotes(t_data *d, int i)
 {
-	while (d->buf[++i])
+	while (d->p->cmd[++i])
 	{
-		if (d->buf[i] == '\"')
+		if (d->p->cmd[i] == '\"')
 		{
-			ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
+			ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
 			i = double_quotes(d, --i);
-			ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
+			ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
 			i--;
 		}
-		else if (d->buf[i] == '\'')
+		else if (d->p->cmd[i] == '\'')
 		{
-			ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
-			while (d->buf[i] != '\'' && d->buf[i])
+			ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
+			while (d->p->cmd[i] != '\'' && d->p->cmd[i])
 				i++;
-			ft_memmove(&d->buf[i], &d->buf[i + 1], ft_strlen(d->buf) - 1);
+			ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
 		}
-		else if (d->buf[i] == '$')
+		else if (d->p->cmd[i] == '$')
 			dollar_var(d, i);
-		else if (d->buf[i] == ' ')
+		else if (d->p->cmd[i] == ' ')
 			clean_extra_spaces(d, i);
 	}
-	return (d->buf);
+	return (d->p->cmd);
 }
