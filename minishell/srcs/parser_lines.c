@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:01:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/10 21:46:16 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:02:53 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*Just skips everything until finding*/
 /*a double quote, and returns it's position*/
-int	doublee(t_data *d, int i)
+static int	doublee(t_data *d, int i)
 {
 	i++;
 	while (d->buf[i] != '\"')
@@ -25,7 +25,7 @@ int	doublee(t_data *d, int i)
 
 /*Just skips everything until finding*/
 /*a simple quote, and returns it's position*/
-int	simple(t_data *d, int i)
+static int	simple(t_data *d, int i)
 {
 	i++;
 	while (d->buf[i] != '\'')

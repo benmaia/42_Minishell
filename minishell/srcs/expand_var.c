@@ -6,19 +6,30 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:43:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/14 16:12:41 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/20 01:27:21 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+#include <ctype.h>
 #include <stdio.h>
 
-void	invalid_var(char *var)
+char	*check_var(t_data *d, int i, int j)
 {
-	free (var);
-	/*free (p);*/
-	/*free (p1);*/
-	/*free (p2);*/
+	char	*var;
+	char	*tmp;
+
+	var = ft_substr(d->p->cmd, j, i - j);
+	if (!var || !ft_check_var(d->env, var))
+	{
+		tmp = ft_substr(d->p->cmd, 0, j);
+		free (var);
+		free (d->p->cmd);
+		d->p->cmd = ft_strjoin(tmp, " ");
+		free (tmp);
+		return (NULL);
+	}
+	return (var);
 }
 
 /*This functions, gets a copy of the promp*/
@@ -37,12 +48,9 @@ void	expand_var(t_data *d, int i, int j)
 	char	*p2;
 	char	*p3;
 
-	var = ft_substr(d->p->cmd, j, i - j);
+	var = check_var(d, i, j);
 	if (!var)
-	{
-		invalid_var(var);
 		return ;
-	}
 	p = ft_substr(d->p->cmd, 0, j);
 	p1 = ft_substr(d->p->cmd, i, ft_strlen(d->p->cmd));
 	p2 = ft_strjoin(p, ft_check_var(d->env, var));
@@ -55,6 +63,7 @@ void	expand_var(t_data *d, int i, int j)
 	free (p3);
 	free (var);
 }
+
 /*This function, removes the $ sign*/
 /*the string, saves the position where*/
 /*the enviroment variable starts and ends*/
@@ -62,12 +71,29 @@ void	expand_var(t_data *d, int i, int j)
 /*so the expansion can be made*/
 void	dollar_var(t_data *d, int i)
 {
-	int	j;
+	int		j;
+	char	*tmp;
 
 	ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
 	j = i;
-	while (d->p->cmd[i] != ' ' && d->p->cmd[i] != '\"'
-		&& d->p->cmd[i] != '\'' && d->p->cmd[i])
-			i++;
-	expand_var(d, i, j);
+	if (d->p->cmd[i] == '?')
+	{
+		ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
+		tmp = ft_strdup(d->p->cmd);
+		free (d->p->cmd);
+		d->p->cmd = ft_strjoin(tmp, ft_itoa(err_value));
+	}
+	else if (!isalpha(d->p->cmd[i]))
+	{
+		perror("error");
+		err_value = FILE_DIR_ERR;
+		return ;
+	}
+	else
+	{
+		while (d->p->cmd[i] != ' ' && d->p->cmd[i] != '\"'
+			&& d->p->cmd[i] != '\'' && d->p->cmd[i])
+				i++;
+		expand_var(d, i, j);
+	}
 }

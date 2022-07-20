@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:05:54 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/02 16:39:18 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:50:38 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ typedef struct s_cd {
 
 void	cd(t_data *d);
 
-void	ft_pwd(void);
 
 #endif
