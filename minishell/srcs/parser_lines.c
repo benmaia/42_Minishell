@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:01:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/17 17:02:53 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:01:56 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,21 @@ t_promp	*parser_promp(t_data *d, int i)
 			i = simple(d, i);
 		else if (d->buf[i] == '|')
 		{
-			if (d->buf[j] == ' ')
+			while (d->buf[j] == ' ')
 				j++;
-			ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i - j)));
+			ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i)));
 			j = i + 1;
 		}
+		printf("i = %d\n", i);
+		printf("j = %d\n", j);
 	}
-	if (d->buf[j] == ' ')
+	while (d->buf[j] == ' ')
 		j++;
-	ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i - j)));
+	printf(" last i = %d\n", i);
+	printf("last j = %d\n", j);
+	ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i)));
 	return (promp);
 }
+
+/*012345678901234567890123456789*/
+/*echo ola | echo ola | echo ola*/
