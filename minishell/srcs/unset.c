@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:57:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/11 17:51:23 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:27:39 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,11 @@ void	ft_unset(t_data *d)
 		var = ft_strdup(ft_strchr(d->p->cmd, ' ') + 1);
 		unset_var(d, var);
 		free (var);
+		err_value = 0;
 	}
 	else
 	{
 		perror("error");
+		err_value = CMD_NOT_FOUND_ERR;
 	}
 }

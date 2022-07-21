@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:03:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/10 22:21:00 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:20:54 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,28 @@
 
 /*Uses the function getcwd to get */
 /*the current path and print it*/
-void	ft_pwd(void)
+void	ft_pwd(t_data *d)
 {
 	char	path[1040];
 
-	if (getcwd(path, sizeof(path)) != NULL)
-		printf("%s\n", path);
+	if (!ft_strcmp(d->p->cmd, "pwd"))
+		{
+		if (getcwd(path, sizeof(path)) != NULL)
+		{
+			printf("%s\n", path);
+			err_value = 0;
+		}
+		else
+		{
+			err_value = CMD_NOT_FOUND_ERR;
+			perror("error");
+		}
+	}
 	else
-		exit(1); //error here
+	{
+		perror("error");
+		err_value = CMD_NOT_FOUND_ERR;
+	}
 }
 
 /*It executes the relative command, for that*/
@@ -75,8 +89,26 @@ void	cd_path(t_cd *cd, int i)
 	else
 		cd_relative(cd, i);
 	if (chdir(cd->valid_path) != 0)
-		exit(1); //error here
+	{
+		err_value = FILE_DIR_ERR;
+		perror("cd");
+	}
 	free (cd->valid_path);
+}
+
+void	cd_relative_path(t_data *d, t_cd *cd)
+{
+	int	i;
+
+	getcwd(cd->path, sizeof(cd->path));
+	if (!d->p->cmd)
+		exit (0);
+	cd->dest = ft_split(d->p->cmd, ' ');
+	i = 0;
+	cd_path(cd, i);
+	while (cd->dest[i])
+		free (cd->dest[i++]);
+	free (cd->dest);
 }
 
 /*Replicates the cd command on bash*/
@@ -86,26 +118,18 @@ void	cd_path(t_cd *cd, int i)
 /*path with the cd_path function*/
 void	cd(t_data *d)
 {
-	int		i;
 	t_cd	cd;
 
 	cd.valid_path = NULL;
 	if (!ft_strncmp(d->p->cmd, "cd ~\0", 5))
 		chdir(getenv("HOME"));
 	else if (!ft_strncmp(d->p->cmd, "cd ", 3))
-	{
-		getcwd(cd.path, sizeof(cd.path));
-		if (!d->p->cmd)
-			exit (0);
-		cd.dest = ft_split(d->p->cmd, ' ');
-		i = 0;
-		cd_path(&cd, i);
-		while (cd.dest[i])
-			free (cd.dest[i++]);
-		free (cd.dest);
-	}
+		cd_relative_path(d, &cd);
 	else if (!ft_strncmp(d->p->cmd, "cd\0", 3))
 		chdir(getenv("HOME"));
 	else
-		perror("error");
+	{
+		err_value = FILE_DIR_ERR;
+		perror("cd");
+	}
 }

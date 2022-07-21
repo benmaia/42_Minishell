@@ -6,37 +6,58 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:40:25 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/11 19:04:12 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/20 01:23:07 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 #include <stdio.h>
+#include <sys/types.h>
+
+int	simple_quotes(t_data *d, int i)
+{
+	char	*tmp;
+	int	j;
+
+	j = i;
+	i++;
+	while (d->p->cmd[i] != '\'' && d->p->cmd[i])
+		i++;
+	tmp = ft_strdup(d->p->cmd);
+	ft_memmove(&tmp[j], &tmp[j + 1], ft_strlen(tmp) - 1);
+	ft_memmove(&tmp[i - 1], &tmp[i], ft_strlen(tmp) - 1);
+	free (d->p->cmd);
+	d->p->cmd = ft_strdup(tmp);
+	free (tmp);
+	return (i - 2);
+}
 
 /*It will iterate the string until if finds*/
 /*another double quote, ignoring everything*/
 /*between them, execpt the $ sign!*/
 /*If it find the $sign it will call the*/
-/*expand_var function to expand the variable*/
+/*dollar_var function to expand the variable*/
 int	double_quotes(t_data *d, int i)
 {
+	char	*tmp;
 	int	j;
 
+	j = i;
 	while (d->p->cmd[++i] != '\"' && d->p->cmd[i])
 	{
 		if (d->p->cmd[i] == '$')
 		{
-			ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
-			j = i;
-			while (d->p->cmd[i] != ' ' && d->p->cmd[i] != '\"'
-				&& d->p->cmd[i] != '\'' && d->p->cmd[i])
-				i++;
-			if (d->p->cmd[i])
-				expand_var(d, i, j);
+			dollar_var(d, i);
 			i--;
 		}
 	}
-	return (i);
+	tmp = ft_strdup(d->p->cmd);
+	ft_memmove(&tmp[j], &tmp[j + 1], ft_strlen(tmp) - 1);
+	ft_memmove(&tmp[i - 1], &tmp[i], ft_strlen(tmp) - 1);
+	free (d->p->cmd);
+	d->p->cmd = ft_strdup(tmp);
+	free (tmp);
+	return (i - 2);
 }
 
 /*If it checks that thes more then 1 space*/
@@ -66,19 +87,9 @@ char	*quotes(t_data *d, int i)
 	while (d->p->cmd[++i])
 	{
 		if (d->p->cmd[i] == '\"')
-		{
-			ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
-			i = double_quotes(d, --i);
-			ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
-			i--;
-		}
+			i = double_quotes(d, i);
 		else if (d->p->cmd[i] == '\'')
-		{
-			ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
-			while (d->p->cmd[i] != '\'' && d->p->cmd[i])
-				i++;
-			ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
-		}
+			i = simple_quotes(d, i);
 		else if (d->p->cmd[i] == '$')
 			dollar_var(d, i);
 		else if (d->p->cmd[i] == ' ')
