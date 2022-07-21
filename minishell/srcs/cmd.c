@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:08:31 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/19 19:52:07 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/21 03:00:50 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	built_in(t_data *d)
 	{
 		free (d->buf);
 		ft_free_stack(&d->env);
-		/*free_prompt(&d->p);*/
 		exit (1);
 	}
 	else

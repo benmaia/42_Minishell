@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:03:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/19 23:37:38 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:20:54 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,14 @@ void	ft_pwd(t_data *d)
 	if (!ft_strcmp(d->p->cmd, "pwd"))
 		{
 		if (getcwd(path, sizeof(path)) != NULL)
+		{
 			printf("%s\n", path);
+			err_value = 0;
+		}
 		else
 		{
 			err_value = CMD_NOT_FOUND_ERR;
-			exit(1);
+			perror("error");
 		}
 	}
 	else

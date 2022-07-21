@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 00:29:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/14 18:19:05 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:26:50 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,14 @@ int	checker(t_data *d, int i)
 		{
 			perror("error");
 			return (0);
-			/*exit(1);*/
 		}
 		else if (d->buf[i] == '=')
 			return (1);
 	}
 	if (d->buf[i] == '\0')
 	{
+		err_value = FILE_DIR_ERR;
 		perror("error2");
-		/*exit(1);*/
 	}
 	return (0);
 }
@@ -112,10 +111,8 @@ int	check_duplicates(t_data *d)
 
 	i = -1;
 	while (d->buf[++i])
-	{
 		if (d->buf[i] == '=')
 			break ;
-	}
 	var = ft_substr(d->buf, 0, i);
 	tmp = d->env;
 	while (tmp)
@@ -130,6 +127,7 @@ int	check_duplicates(t_data *d)
 		tmp = tmp->next;
 	}
 	free (var);
+	err_value = FILE_DIR_ERR;
 	return (0);
 }
 
@@ -146,16 +144,23 @@ void	ft_export(t_data *d)
 	t_list	*new_var;
 
 	if (ft_strncmp(d->buf, "export ", 7))
+	{
 		perror("error");
+		err_value = CMD_NOT_FOUND_ERR;
+	}
 	else
 	{
 		check_spaces(d, -1);
 		if (checker(d, -1))
 		{
 			if (check_duplicates(d))
+			{
+				err_value = NO_ERROR;
 				return ;
+			}
 			new_var = ft_lstnew(ft_strdup(d->buf));
 			ft_lstadd_back(&d->env, new_var);
+			err_value = NO_ERROR;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:50:14 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/20 00:32:10 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:22:41 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,13 @@ t_list	*init_env(char **envp)
 void	ft_env(t_data *d)
 {
 	if (!ft_strncmp(d->buf, "env\0", 4) || !ft_strncmp(d->buf, "env ", 4))
+	{
 		ft_lst_strprint(d->env);
+		err_value = 0;
+	}
 	else
+	{
 		perror("error");
+		err_value = CMD_NOT_FOUND_ERR;
+	}
 }

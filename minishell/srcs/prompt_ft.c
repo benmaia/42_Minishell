@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:15:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/14 18:22:53 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/21 02:59:52 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 
 void	ft_prompcmd(t_data *d)
 {
+	t_promp	*tmp;
+
 	d->nbr_cmd = 1;
 	if (!d)
 		return ;
-	while (d->p->next)
+	tmp = d->p;
+	while (tmp->next)
 	{
 		d->nbr_cmd++;
-		d->p = d->p->next;
+		tmp = tmp->next;
 	}
 	return ;
 }

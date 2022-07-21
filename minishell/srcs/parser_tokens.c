@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 21:47:01 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/18 20:39:59 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/21 02:46:07 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	tokenizer(char c)
 /*Seaches for a token in the cmd and*/
 /*if it finds it, puts the token in the*/
 /*token variable and cleans the cmd*/
-void	parsing_tokens(t_promp **p, int i)
+void	parsing_tokens(t_promp *p, int i)
 {
 	t_promp	*tmp;
 	char	*tmpstr;
 
-	tmp = *p;
+	tmp = p;
 	while (tmp)
 	{
 		while (tmp->cmd[++i])

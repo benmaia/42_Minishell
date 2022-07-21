@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/19 23:36:54 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/21 03:09:22 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/types.h>
+# include<sys/wait.h>
 
 // Colors
 # define BLACK "\e[1;30m"
@@ -50,6 +52,11 @@ typedef struct s_env{
 	struct s_env	*next;
 }	t_env;
 
+typedef struct s_pipes{
+	int		pipe[2];
+	pid_t		pid;
+} t_pipes;
+
 typedef struct s_promp {
 	char	*cmd;
 	char	*token;
@@ -61,6 +68,7 @@ typedef struct s_data {
 	char	*buf;
 	t_list	*env;
 	t_promp	*p;
+	t_pipes	*ps;
 	int		nbr_cmd;
 }	t_data;
 
@@ -88,7 +96,7 @@ void	ft_export(t_data *d);
 
 t_list	*init_env(char **envp);
 
-void	parsing_tokens(t_promp **p, int i);
+void	parsing_tokens(t_promp *p, int i);
 
 char	*quotes(t_data *d, int i);
 
@@ -103,6 +111,13 @@ void	dollar_export(t_data *d, char *tmp, int i);
 int	check_size(int x, int z);
 
 t_promp	*parser_promp(t_data *d, int i);
+
+
+/*#################### PIPES ##################*/
+
+int	pipes(t_data *d);
+
+void	change_dups(t_data *d);
 
 /*#################### PROMPT ##################*/
 
