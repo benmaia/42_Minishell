@@ -1,5 +1,4 @@
 /* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parser_lines.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -59,19 +58,12 @@ t_promp	*parser_promp(t_data *d, int i)
 		{
 			while (d->buf[j] == ' ')
 				j++;
-			ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i)));
+			ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i - j)));
 			j = i + 1;
 		}
-		printf("i = %d\n", i);
-		printf("j = %d\n", j);
 	}
 	while (d->buf[j] == ' ')
 		j++;
-	printf(" last i = %d\n", i);
-	printf("last j = %d\n", j);
-	ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i)));
+	ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i - j)));
 	return (promp);
 }
-
-/*012345678901234567890123456789*/
-/*echo ola | echo ola | echo ola*/

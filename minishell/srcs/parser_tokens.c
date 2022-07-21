@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 21:47:01 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/21 02:46:07 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/21 22:44:11 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	parsing_tokens(t_promp *p, int i)
 				break ;
 			}
 		}
+		i = -1;
 		tmp = tmp->next;
 	}
 }
