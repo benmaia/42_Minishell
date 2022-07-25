@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 21:47:01 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/21 22:44:11 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/23 13:08:27 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	parsing_tokens(t_promp *p, int i)
 			if (tokenizer(tmp->cmd[i]))
 			{
 				tmpstr = ft_substr(tmp->cmd, 0, i - 1);
-				tmp->token = ft_substr(tmp->cmd, i, ft_strlen(tmp->cmd));
+				tmp->pre_token = ft_substr(tmp->cmd, i, ft_strlen(tmp->cmd));
 				free (tmp->cmd);
 				tmp->cmd = ft_strdup(tmpstr);
 				free (tmpstr);

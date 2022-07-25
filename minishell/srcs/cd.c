@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:03:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/20 22:20:54 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/23 13:06:14 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ void	ft_pwd(t_data *d)
 		if (getcwd(path, sizeof(path)) != NULL)
 		{
 			printf("%s\n", path);
-			err_value = 0;
+			g_err_value = 0;
 		}
 		else
 		{
-			err_value = CMD_NOT_FOUND_ERR;
+			g_err_value = CMD_NOT_FOUND_ERR;
 			perror("error");
 		}
 	}
 	else
 	{
 		perror("error");
-		err_value = CMD_NOT_FOUND_ERR;
+		g_err_value = CMD_NOT_FOUND_ERR;
 	}
 }
 
@@ -90,7 +90,7 @@ void	cd_path(t_cd *cd, int i)
 		cd_relative(cd, i);
 	if (chdir(cd->valid_path) != 0)
 	{
-		err_value = FILE_DIR_ERR;
+		g_err_value = FILE_DIR_ERR;
 		perror("cd");
 	}
 	free (cd->valid_path);
@@ -129,7 +129,7 @@ void	cd(t_data *d)
 		chdir(getenv("HOME"));
 	else
 	{
-		err_value = FILE_DIR_ERR;
+		g_err_value = FILE_DIR_ERR;
 		perror("cd");
 	}
 }

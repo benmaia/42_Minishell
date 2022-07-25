@@ -6,48 +6,39 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 01:28:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/21 03:28:22 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:43:59 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 #include <stdio.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
-void	child_process(t_data *d)
+void	piping(t_data *d, int x)
 {
-	close (d->ps->pipe[0]);
-	dup2 (d->ps->pipe[1], STDOUT_FILENO);
-	if (built_in(d))
-		printf("exec\n");
-	close (d->ps->pipe[1]);
-	/*wait (NULL);*/
-	dup2 (d->ps->pipe[0], STDIN_FILENO);
-}
+	pid_t	pid;
+	int	pipes[2];
+	int	i;
 
-void	change_dups(t_data *d)
-{
-	if (pipe(d->ps->pipe) == -1)
-	{
+	if (pipe(pipes) == -1)
 		perror("error");
-		err_value = OUT_RANGE_ERR; 
-	}
-	d->ps->pid = fork();
-	if (d->ps->pid < 0)
-	{
+	pid = fork();
+	if (pid < 0)
 		perror("error");
-		err_value = OUT_RANGE_ERR; 
-	}
-	if (!d->ps->pid)
+	if (!pid)
 	{
-		child_process(d);
-		printf("trtrt\n");
+		close(pipes[0]);
+		if (x != d->nbr_cmd)
+			dup2(pipes[1], STDOUT_FILENO);
+		i = built_in(d);
+		if (i == 1)
+			exit (1);
+		else
+			cmds_exec(d);
 	}
-}
-
-int	pipes(t_data *d)
-{
-	if (d->p->next)
-		return (1);
-	return (0);
+	close(pipes[1]);
+	wait(NULL);
+	if (x != d->nbr_cmd)
+		dup2(pipes[0], STDIN_FILENO);
 }

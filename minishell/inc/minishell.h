@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/21 03:09:22 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:45:32 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,11 @@ typedef struct s_pipes{
 
 typedef struct s_promp {
 	char	*cmd;
-	char	*token;
+	char	*pre_token;
+	char	**token;
 	char	**exe;
+	char	**path;
+	char	*cmd_path;
 	struct	s_promp	*next;
 } t_promp;
 
@@ -74,7 +77,7 @@ typedef struct s_data {
 
 /*#################### GLOBAL VAR ##################*/
 
-extern int err_value;
+extern int g_err_value;
 
 /*#################### BUILT INS ##################*/
 
@@ -115,7 +118,7 @@ t_promp	*parser_promp(t_data *d, int i);
 
 /*#################### PIPES ##################*/
 
-int	pipes(t_data *d);
+void	piping(t_data *d, int x);
 
 void	change_dups(t_data *d);
 
@@ -138,5 +141,15 @@ void	ft_free_stack(t_list **list);
 void	free_prompt(t_promp **promp);
 
 void	ft_free(void *ptr);
+
+/*#################### COMMANDS ##################*/
+
+void	find_path(t_data *d);
+
+void	cmds_exec(t_data *d);
+
+void	relative_cmd(t_data *d);
+
+int	absolute_cmd(t_data *d);
 
 #endif /* MINISHELL_H */
