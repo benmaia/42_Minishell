@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:37:13 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/25 02:12:12 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/25 16:57:30 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,27 @@
 void	echo_line(t_data *d)
 {
 	if (!ft_strncmp(d->p->cmd, "echo\0", 5))
+	{
 		printf("\n");
+		exit (1);
+	}
 	else
+	{
 		printf("%s\n", ft_strchr(d->p->cmd, ' ') + 1);
+		exit (1);
+	}
 }
 
 void	echo_noline(t_data *d)
 {
 	if (!ft_strncmp(d->p->cmd, "echo -n\0", 8))
-		return ;
+		exit (1);
+		/*return ;*/
 	else
+	{
 		printf("%s", ft_strchr(d->p->cmd, 'n') + 2);
+		exit (1);
+	}
 }
 
 /*Replicates the command echo in bash, it*/

@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 01:28:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/24 17:43:59 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/25 22:32:40 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ void	piping(t_data *d, int x)
 		if (i == 1)
 			exit (1);
 		else
-			cmds_exec(d);
+		cmds_exec(d);
 	}
 	close(pipes[1]);
 	wait(NULL);
 	if (x != d->nbr_cmd)
 		dup2(pipes[0], STDIN_FILENO);
+	/*else*/
+		/*close (pipes[0]);*/
 }
