@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 11:28:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/21 03:29:11 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:49:30 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int	err_value;
+int	g_err_value;
 
 int main (int argc, char **argv, char **envp)
 {
@@ -40,18 +40,13 @@ int main (int argc, char **argv, char **envp)
 		ft_prompcmd(&d);
 		while (++i <= d.nbr_cmd)
 		{
-			if (built_in(&d))
-				printf("exec\n");
+			piping(&d, i);
+			/*if (built_in(&d))*/
+				/*cmds_exec(&d);*/
 			d.p = d.p->next;
 		}
 		free (d.buf);
-		/*err_value = 0;*/
-		/*free (d.p->cmd);*/
-		/*free_prompt(&d.p);*/
 	}
 	ft_free_stack(&d.env);
-	/*free_prompt(&d);*/
-	/*free (d.p);*/
-	/*ft_free_stack(&d.env);*/
 	return (0);
 }

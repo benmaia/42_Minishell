@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 00:29:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/20 22:26:50 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/23 13:07:39 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	checker(t_data *d, int i)
 	}
 	if (d->buf[i] == '\0')
 	{
-		err_value = FILE_DIR_ERR;
+		g_err_value = FILE_DIR_ERR;
 		perror("error2");
 	}
 	return (0);
@@ -127,7 +127,7 @@ int	check_duplicates(t_data *d)
 		tmp = tmp->next;
 	}
 	free (var);
-	err_value = FILE_DIR_ERR;
+	g_err_value = FILE_DIR_ERR;
 	return (0);
 }
 
@@ -146,7 +146,7 @@ void	ft_export(t_data *d)
 	if (ft_strncmp(d->buf, "export ", 7))
 	{
 		perror("error");
-		err_value = CMD_NOT_FOUND_ERR;
+		g_err_value = CMD_NOT_FOUND_ERR;
 	}
 	else
 	{
@@ -155,12 +155,12 @@ void	ft_export(t_data *d)
 		{
 			if (check_duplicates(d))
 			{
-				err_value = NO_ERROR;
+				g_err_value = NO_ERROR;
 				return ;
 			}
 			new_var = ft_lstnew(ft_strdup(d->buf));
 			ft_lstadd_back(&d->env, new_var);
-			err_value = NO_ERROR;
+			g_err_value = NO_ERROR;
 		}
 	}
 }

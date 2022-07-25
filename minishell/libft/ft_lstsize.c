@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 21:12:24 by bmiguel-          #+#    #+#             */
-/*   Updated: 2021/10/28 19:31:09 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/23 21:33:04 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 int	ft_lstsize(t_list *lst)
 {
 	int	i;
+	t_list	*new;
 
 	i = 0;
-	while (lst)
+	new = lst;
+	while (new)
 	{
 		i++;
-		lst = lst->next;
+		new = new->next;
 	}
 	return (i);
 }
