@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:03:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/23 13:06:14 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/26 01:36:16 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	ft_pwd(t_data *d)
 {
 	char	path[1040];
 
-	if (!ft_strcmp(d->p->cmd, "pwd"))
+	if (!ft_strncmp(d->p->cmd, "pwd ", 4)
+			|| !ft_strncmp(d->p->cmd, " pwd ", 5)
+			|| !ft_strncmp(d->p->cmd, "pwd\0", 5))
 		{
 		if (getcwd(path, sizeof(path)) != NULL)
 		{

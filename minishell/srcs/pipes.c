@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 01:28:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/25 22:32:40 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/26 02:24:11 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,32 @@
 
 void	piping(t_data *d, int x)
 {
-	pid_t	pid;
-	int	pipes[2];
+	/*pid_t	pid;*/
+	/*int	pipes[2];*/
 	int	i;
 
-	if (pipe(pipes) == -1)
+	if (pipe(d->pp->pipes) == -1)
 		perror("error");
-	pid = fork();
-	if (pid < 0)
+	d->pp->pid = fork();
+	if (d->pp->pid < 0)
 		perror("error");
-	if (!pid)
+	if (!d->pp->pid)
 	{
-		close(pipes[0]);
+		if (x == 1)
+			close(d->pp->pipes[0]);
+		else if (x > 1)
+			dup2(d->pp->pipes[0], STDIN_FILENO);
 		if (x != d->nbr_cmd)
-			dup2(pipes[1], STDOUT_FILENO);
+			dup2(d->pp->pipes[1], STDOUT_FILENO);
+		close(d->pp->pipes[1]);
 		i = built_in(d);
-		if (i == 1)
+		if (i == 0)
 			exit (1);
-		else
-		cmds_exec(d);
+		else if (i == 1)
+			cmds_exec(d);
 	}
-	close(pipes[1]);
+	close(d->pp->pipes[1]);
+	close(d->pp->pipes[0]);
 	wait(NULL);
-	if (x != d->nbr_cmd)
-		dup2(pipes[0], STDIN_FILENO);
-	/*else*/
-		/*close (pipes[0]);*/
+	/*dup2(d->pp->pipes[0], STDIN_FILENO);*/
 }

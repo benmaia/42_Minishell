@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/25 16:08:56 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/26 01:58:17 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@
 # define CTRL_C_ERR 130
 # define CMD_NOT_FOUND_ERR 127
 
+typedef struct s_pipes {
+	int	pipes[2];
+	pid_t	pid;
+	int	original_fd;
+} t_pipes;
+
 typedef struct s_promp {
 	char	*cmd;
 	char	*pre_token;
@@ -55,6 +61,7 @@ typedef struct s_data {
 	t_list	*env;
 	t_promp	*p;
 	int		nbr_cmd;
+	t_pipes	*pp;
 }	t_data;
 
 /*#################### GLOBAL VAR ##################*/
