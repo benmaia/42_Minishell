@@ -27,9 +27,7 @@ SRC		=	$(SRC_DIR)/pipes.c \
 				$(SRC_DIR)/cmd.c \
 				$(SRC_DIR)/exec_cmd.c \
 				$(SRC_DIR)/free_parser.c \
-				$(SRC_DIR)/declare_structs.c \
-				#$(SRC_DIR)/prompt.c		\
-				$(SRC_DIR)/free_clean.c
+				$(SRC_DIR)/declare_structs.c
 
 OBJ			=	$(patsubst %.c, %.o, $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC)))
 

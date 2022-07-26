@@ -48,11 +48,6 @@ t_promp	*parser_promp(t_data *d, int i)
 
 	promp = NULL;
 	j = 0;
-	if (!d->buf)
-	{
-		printf("here\n");
-		exit(1);
-	}
 	while (d->buf[++i])
 	{
 		if (d->buf[i] == '\"')

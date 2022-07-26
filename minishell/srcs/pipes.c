@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 01:28:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/26 02:24:11 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:54:07 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 
 void	piping(t_data *d, int x)
 {
-	/*pid_t	pid;*/
-	/*int	pipes[2];*/
 	int	i;
+	int	j;
 
 	if (pipe(d->pp->pipes) == -1)
 		perror("error");
@@ -31,18 +30,20 @@ void	piping(t_data *d, int x)
 		if (x == 1)
 			close(d->pp->pipes[0]);
 		else if (x > 1)
-			dup2(d->pp->pipes[0], STDIN_FILENO);
+		{
+			dup2(d->pp->pipe_fd, STDIN_FILENO);
+			close(d->pp->pipe_fd);
+		}
 		if (x != d->nbr_cmd)
 			dup2(d->pp->pipes[1], STDOUT_FILENO);
-		close(d->pp->pipes[1]);
 		i = built_in(d);
 		if (i == 0)
-			exit (1);
+			exit (i);
 		else if (i == 1)
 			cmds_exec(d);
 	}
 	close(d->pp->pipes[1]);
-	close(d->pp->pipes[0]);
-	wait(NULL);
-	/*dup2(d->pp->pipes[0], STDIN_FILENO);*/
+	waitpid(d->pp->pid, &j, 0);
+	g_err_value = j/256;
+	d->pp->pipe_fd = d->pp->pipes[0];
 }

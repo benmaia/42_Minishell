@@ -6,13 +6,13 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 23:16:30 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/26 01:20:33 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:43:18 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	path_tester_cmd(t_data *d, int i, char *tmp, char *tmp2)
+int	path_tester_cmd(t_data *d, int i, char *tmp)
 {
 	t_promp	*tmp_p;
 	int		j;
@@ -21,16 +21,14 @@ int	path_tester_cmd(t_data *d, int i, char *tmp, char *tmp2)
 	while (tmp_p->path[++i])
 	{
 		tmp = ft_strjoin(tmp_p->path[i], d->p->cmd_path);
-		tmp2 = ft_strdup(tmp);
-		free (tmp);
-		j = access(tmp2, F_OK);
+		j = access(tmp, F_OK);
 		if (j < 0)
-			free (tmp2);
+			free (tmp);
 		else
 		{
 			free (d->p->cmd_path);
-			d->p->cmd_path = ft_strdup(tmp2);
-			free (tmp2);
+			d->p->cmd_path = ft_strdup(tmp);
+			free (tmp);
 			return (0);
 		}
 	}
@@ -47,7 +45,7 @@ void	relative_cmd(t_data *d)
 	d->p->cmd_path = ft_strdup(tmp);
 	free (tmp);
 	free (tmp2);
-	if (path_tester_cmd(d, -1, tmp, tmp2))
+	if (path_tester_cmd(d, -1, tmp))
 	{
 		perror ("error");
 		g_err_value = CMD_NOT_FOUND_ERR;

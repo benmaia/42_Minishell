@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 22:18:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/25 16:12:39 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/26 20:00:07 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	initialize_prompt(t_data *d)
 	d->p->token = NULL;
 }
 
-void	initialize_structs(t_data *d)
+void	initialize_structs(t_data *d, char **envp)
 {
 	initialize_prompt(d);
+	d->env = init_env(envp);
 }

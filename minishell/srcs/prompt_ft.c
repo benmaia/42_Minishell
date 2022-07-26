@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:15:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/21 02:59:52 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:14:19 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,16 @@ t_promp	*ft_promplast(t_promp *p)
 void	ft_prompadd(t_promp **p, t_promp *neww)
 {
 	t_promp	*back;
+	t_promp	**tmp;
 
-	back = *p;
+	tmp = p;
+	back = *tmp;
 	if (!back)
 	{
 		*p = neww;
 		return ;
 	}
-	back = ft_promplast(*p);
+	back = ft_promplast(*tmp);
 	back->next = neww;
 }
 

@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:37:13 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/25 16:57:30 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:55:26 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ void	ft_echo(t_data *d)
 	{
 		echo_line(d);
 		g_err_value = NO_ERROR;
+		exit(0);
 	}
 	else
 	{
 		g_err_value = CMD_NOT_FOUND_ERR;
 		perror("error");
+		exit(1);
 	}
 }

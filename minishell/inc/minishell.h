@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/26 01:58:17 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/26 20:37:03 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 typedef struct s_pipes {
 	int	pipes[2];
 	pid_t	pid;
-	int	original_fd;
+	int	pipe_fd;
 } t_pipes;
 
 typedef struct s_promp {
@@ -53,6 +53,7 @@ typedef struct s_promp {
 	char	**exe;
 	char	**path;
 	char	*cmd_path;
+	char	**envp;
 	struct	s_promp	*next;
 } t_promp;
 
@@ -69,6 +70,7 @@ typedef struct s_data {
 extern int g_err_value;
 
 /*#################### BUILT INS ##################*/
+int	env_cmd(t_data *d);
 
 int	built_in(t_data *d);
 
@@ -121,7 +123,7 @@ void	ft_prompprint(t_promp *p);
 
 void	ft_prompcmd(t_data *d);
 
-void	initialize_structs(t_data *d);
+void	initialize_structs(t_data *d, char **envp);
 
 /*#################### FREE ##################*/
 

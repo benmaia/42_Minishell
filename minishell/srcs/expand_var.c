@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:43:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/23 13:07:16 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:36:02 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	dollar_var(t_data *d, int i)
 {
 	int		j;
 	char	*tmp;
+	char	*itoaa;
 
 	ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
 	j = i;
@@ -81,7 +82,10 @@ void	dollar_var(t_data *d, int i)
 		ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
 		tmp = ft_strdup(d->p->cmd);
 		free (d->p->cmd);
-		d->p->cmd = ft_strjoin(tmp, ft_itoa(g_err_value));
+		itoaa = ft_itoa(g_err_value);
+		d->p->cmd = ft_strjoin(tmp, itoaa);
+		free (tmp);
+		free (itoaa);
 	}
 	else if (!isalpha(d->p->cmd[i]))
 	{
