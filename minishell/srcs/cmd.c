@@ -6,11 +6,12 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 23:16:30 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/27 21:50:12 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 04:43:49 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+#include <stdio.h>
 
 int	path_tester_cmd(t_data *d, int i, char *tmp)
 {
@@ -18,6 +19,8 @@ int	path_tester_cmd(t_data *d, int i, char *tmp)
 	int		j;
 
 	tmp_p = d->p;
+	if (!tmp_p->path)
+		return (1);
 	while (tmp_p->path[++i])
 	{
 		tmp = ft_strjoin(tmp_p->path[i], d->p->cmd_path);
@@ -31,6 +34,8 @@ int	path_tester_cmd(t_data *d, int i, char *tmp)
 			free (tmp);
 			return (0);
 		}
+		if (i >= (int)sizeof(tmp_p->path))
+			break ;
 	}
 	return (1);
 }
@@ -77,7 +82,7 @@ void	find_path(t_data *d)
 	env_tmp = d->env;
 	while (env_tmp)
 	{
-		if (!ft_strncmp((char *)env_tmp->content, "PATH", 4))
+		if (!ft_strncmp((char *)env_tmp->content, "PATH=", 5))
 			tmp = ft_strdup((char *)env_tmp->content + 5);
 		env_tmp = env_tmp->next;
 	}
@@ -85,7 +90,8 @@ void	find_path(t_data *d)
 	{
 		ft_putstr_fd("error: no such file or directory\n", 2);
 		g_err_value = FILE_DIR_ERR;
-		return ;
+		free (tmp);
+		exit (FILE_DIR_ERR) ;
 	}
 	d->p->path = ft_split(tmp, ':');
 	free (tmp);

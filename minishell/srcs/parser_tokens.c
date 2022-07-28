@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 21:47:01 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 03:54:12 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 04:10:37 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ static void	parse_exec(t_promp *tmp, int i, char *tmpstr)
 			free (tmpstr);
 			break ;
 		}
-		if (i >= (int)ft_strlen(tmp->cmd))
-			break ;
 	}
 	i = -1;
 }

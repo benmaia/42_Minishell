@@ -6,11 +6,12 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 23:02:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 03:49:19 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 05:03:47 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+#include <readline/readline.h>
 #include <stdio.h>
 
 /*Just skips everything until finding*/
@@ -42,6 +43,17 @@ static void	checker(t_data *d)
 	}
 }
 
+int	edge_quotes(t_data *d)
+{
+	if (ft_strcmp(d->buf, "\"")
+		|| ft_strcmp(d->buf, "\"\""))
+	{
+		g_err_value = CMD_NOT_FOUND_ERR;
+		return (1);
+	}
+	return (0);
+}
+
 /*Recieves the prompt, and divides the*/
 /*prompt into elements on a linked list*/
 /*everytime it finds a pipe.*/
@@ -57,8 +69,8 @@ t_promp	*parser_promp(t_data *d, int i)
 	int		j;
 
 	promp = NULL;
-	j = 0;
 	checker(d);
+	j = 0;
 	while (d->buf[++i])
 	{
 		if (d->buf[i] == '\"')
@@ -70,8 +82,6 @@ t_promp	*parser_promp(t_data *d, int i)
 			ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i - j)));
 			j = i + 1;
 		}
-		if (i >= (int)ft_strlen(d->buf))
-			break ;
 	}
 	while (d->buf[j] == ' ')
 		j++;
