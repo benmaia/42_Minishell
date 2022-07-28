@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:43:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/26 23:36:02 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/27 21:45:57 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	dollar_var(t_data *d, int i)
 	}
 	else if (!isalpha(d->p->cmd[i]))
 	{
-		perror("error");
+		ft_putstr_fd("error: no such file or directory:\n", 2);
 		g_err_value = FILE_DIR_ERR;
 		return ;
 	}

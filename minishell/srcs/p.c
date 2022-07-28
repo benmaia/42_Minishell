@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 11:28:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/26 23:25:12 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 03:51:26 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@
 #include <unistd.h>
 
 int	g_err_value;
-
+/*zsh: command not found*/
+/*cd: no such file or directory:*/
 int main (int argc, char **argv, char **envp)
 {
 	t_data	d;
 	int		i;
-	/*int		j;*/
 	t_promp	*tmp;
-	t_promp	*tmp2;
 
 	(void) argc;
 	(void) argv;
@@ -34,12 +33,13 @@ int main (int argc, char **argv, char **envp)
 	/*d.p->envp = NULL;*/
 	while (1)
 	{
+		signal_prompt();
 		i = 0;
 		d.nbr_cmd = 0;
 		d.buf = readline (RED"MINISHELL > "RES);
 		if (!d.buf)
 		{
-			printf("here\n");
+			printf("exit\n");
 			exit(1);
 		}
 		if (ft_strlen(d.buf) > 0)
@@ -49,10 +49,10 @@ int main (int argc, char **argv, char **envp)
 		ft_prompcmd(&d);
 		if (env_cmd(&d))
 		{
-				tmp2 = d.p->next;
+				tmp = d.p->next;
 				free (d.p->cmd);
 				free (d.p);
-				d.p = tmp2;
+				d.p = tmp;
 				/*free (d.buf);*/
 				continue ;
 		}

@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:50:14 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/23 13:06:53 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/27 21:46:48 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_env(t_data *d)
 	}
 	else
 	{
-		perror("error");
+		ft_putstr_fd("error: command not found\n", 2);
 		g_err_value = CMD_NOT_FOUND_ERR;
 	}
 }

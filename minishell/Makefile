@@ -16,6 +16,7 @@ SRC		=	$(SRC_DIR)/pipes.c \
 				$(SRC_DIR)/unset.c \
 				$(SRC_DIR)/export.c \
 				$(SRC_DIR)/env.c \
+				$(SRC_DIR)/signals.c \
 				$(SRC_DIR)/expand_var.c \
 				$(SRC_DIR)/echo.c\
 				$(SRC_DIR)/cd.c		\

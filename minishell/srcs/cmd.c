@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 23:16:30 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/26 23:43:18 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/27 21:50:12 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	relative_cmd(t_data *d)
 	free (tmp2);
 	if (path_tester_cmd(d, -1, tmp))
 	{
-		perror ("error");
+		ft_putstr_fd("error: command not found\n", 2);
 		g_err_value = CMD_NOT_FOUND_ERR;
 	}
 }
@@ -62,7 +62,7 @@ int	absolute_cmd(t_data *d)
 	i = access(d->p->cmd_path, F_OK);
 	if (i < 0)
 	{
-		perror("error");
+		ft_putstr_fd("error: command not found\n", 2);
 		g_err_value = CMD_NOT_FOUND_ERR;
 	}
 	return (0);
@@ -83,7 +83,7 @@ void	find_path(t_data *d)
 	}
 	if (!tmp)
 	{
-		perror("error");
+		ft_putstr_fd("error: no such file or directory\n", 2);
 		g_err_value = FILE_DIR_ERR;
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/26 20:37:03 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 03:42:41 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@
 # define CMD_NOT_FOUND_ERR 127
 
 typedef struct s_pipes {
-	int	pipes[2];
+	int		pipes[2];
 	pid_t	pid;
-	int	pipe_fd;
-} t_pipes;
+	int		pipe_fd;
+}	t_pipes;
 
 typedef struct s_promp {
-	char	*cmd;
-	char	*pre_token;
-	char	**token;
-	char	**exe;
-	char	**path;
-	char	*cmd_path;
-	char	**envp;
-	struct	s_promp	*next;
-} t_promp;
+	char			*cmd;
+	char			*pre_token;
+	char			**token;
+	char			**exe;
+	char			**path;
+	char			*cmd_path;
+	char			**envp;
+	struct s_promp	*next;
+}	t_promp;
 
 typedef struct s_data {
 	char	*buf;
@@ -67,12 +67,13 @@ typedef struct s_data {
 
 /*#################### GLOBAL VAR ##################*/
 
-extern int g_err_value;
+extern int	g_err_value;
 
 /*#################### BUILT INS ##################*/
-int	env_cmd(t_data *d);
 
-int	built_in(t_data *d);
+int		env_cmd(t_data *d);
+
+int		built_in(t_data *d);
 
 void	cd(t_data *d);
 
@@ -102,10 +103,9 @@ void	expand_var(t_data *d, int i, int j);
 
 void	dollar_export(t_data *d, char *tmp, int i);
 
-int	check_size(int x, int z);
+int		check_size(int x, int z);
 
 t_promp	*parser_promp(t_data *d, int i);
-
 
 /*#################### PIPES ##################*/
 
@@ -141,6 +141,12 @@ void	cmds_exec(t_data *d);
 
 void	relative_cmd(t_data *d);
 
-int	absolute_cmd(t_data *d);
+int		absolute_cmd(t_data *d);
+
+/*#################### SIGNALS ##################*/
+
+void	signal_prompt(void);
+
+void	signal_block(void);
 
 #endif /* MINISHELL_H */

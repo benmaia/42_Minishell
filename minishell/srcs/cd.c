@@ -6,13 +6,14 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:03:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/26 01:36:16 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/27 23:43:30 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 #include "../inc/cd.h"
 #include <readline/tilde.h>
+#include <stdio.h>
 
 /*Uses the function getcwd to get */
 /*the current path and print it*/
@@ -32,12 +33,12 @@ void	ft_pwd(t_data *d)
 		else
 		{
 			g_err_value = CMD_NOT_FOUND_ERR;
-			perror("error");
+			ft_putstr_fd("error: cmd not found\n", 2);
 		}
 	}
 	else
 	{
-		perror("error");
+		ft_putstr_fd("error: cmd not found\n", 2);
 		g_err_value = CMD_NOT_FOUND_ERR;
 	}
 }
@@ -93,7 +94,7 @@ void	cd_path(t_cd *cd, int i)
 	if (chdir(cd->valid_path) != 0)
 	{
 		g_err_value = FILE_DIR_ERR;
-		perror("cd");
+		ft_putstr_fd("error: no such file or directory\n", 2);
 	}
 	free (cd->valid_path);
 }
@@ -132,6 +133,6 @@ void	cd(t_data *d)
 	else
 	{
 		g_err_value = FILE_DIR_ERR;
-		perror("cd");
+		ft_putstr_fd("error: no such file or directory\n", 2);
 	}
 }

@@ -1,11 +1,12 @@
 /* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parser_lines.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 22:01:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/21 18:01:56 by bmiguel-         ###   ########.fr       */
+/*   Created: 2022/07/27 23:02:59 by bmiguel-          #+#    #+#             */
+/*   Updated: 2022/07/28 03:49:19 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +18,7 @@
 static int	doublee(t_data *d, int i)
 {
 	i++;
-	while (d->buf[i] != '\"')
+	while (d->buf[i] != '\"' && d->buf[i])
 		i++;
 	return (i);
 }
@@ -27,9 +28,18 @@ static int	doublee(t_data *d, int i)
 static int	simple(t_data *d, int i)
 {
 	i++;
-	while (d->buf[i] != '\'')
+	while (d->buf[i] != '\'' && d->buf[i])
 		i++;
 	return (i);
+}
+
+static void	checker(t_data *d)
+{
+	if (!d->buf)
+	{
+		g_err_value = CMD_NOT_FOUND_ERR;
+		exit (1);
+	}
 }
 
 /*Recieves the prompt, and divides the*/
@@ -48,6 +58,7 @@ t_promp	*parser_promp(t_data *d, int i)
 
 	promp = NULL;
 	j = 0;
+	checker(d);
 	while (d->buf[++i])
 	{
 		if (d->buf[i] == '\"')
@@ -56,11 +67,11 @@ t_promp	*parser_promp(t_data *d, int i)
 			i = simple(d, i);
 		else if (d->buf[i] == '|')
 		{
-			while (d->buf[j] == ' ')
-				j++;
 			ft_prompadd(&promp, ft_prompnew(ft_substr(d->buf, j, i - j)));
 			j = i + 1;
 		}
+		if (i >= (int)ft_strlen(d->buf))
+			break ;
 	}
 	while (d->buf[j] == ' ')
 		j++;

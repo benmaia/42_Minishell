@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:37:13 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/26 23:55:26 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 03:55:04 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,23 @@ void	echo_line(t_data *d)
 	if (!ft_strncmp(d->p->cmd, "echo\0", 5))
 	{
 		printf("\n");
-		exit (1);
+		exit (0);
 	}
 	else
 	{
 		printf("%s\n", ft_strchr(d->p->cmd, ' ') + 1);
-		exit (1);
+		exit (0);
 	}
 }
 
 void	echo_noline(t_data *d)
 {
 	if (!ft_strncmp(d->p->cmd, "echo -n\0", 8))
-		exit (1);
-		/*return ;*/
+		exit (0);
 	else
 	{
 		printf("%s", ft_strchr(d->p->cmd, 'n') + 2);
-		exit (1);
+		exit (0);
 	}
 }
 
@@ -60,7 +59,7 @@ void	ft_echo(t_data *d)
 	else
 	{
 		g_err_value = CMD_NOT_FOUND_ERR;
-		perror("error");
-		exit(1);
+		ft_putstr_fd("error: cmd not found\n", 2);
+		exit(127);
 	}
 }
