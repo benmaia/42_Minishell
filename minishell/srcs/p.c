@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 11:28:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 05:06:17 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:10:58 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int main (int argc, char **argv, char **envp)
 		d.p = parser_promp(&d, -1);
 		parsing_tokens(d.p, -1);
 		ft_prompcmd(&d);
-		if (env_cmd(&d))
+		if (!d.p)
+			continue ;
+		else if (env_cmd(&d))
 		{
 				tmp = d.p->next;
 				free (d.p->cmd);
@@ -63,6 +65,7 @@ int main (int argc, char **argv, char **envp)
 				d.p = tmp;
 			}
 		}
+		free (d.buf);
 	}
 	ft_free_stack(&d.env);
 	return (0);

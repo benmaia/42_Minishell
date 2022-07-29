@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:08:31 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 04:24:24 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 22:53:25 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,6 @@ void	cmds_exec(t_data *d)
 		relative_cmd(d);
 	i = execve(d->p->cmd_path, d->p->exe, d->p->envp);
 	exit(127);
-}
-
-int	env_cmd2(t_data *d)
-{
-	if (!ft_strncmp(d->p->cmd, "export", 6))
-	{
-		ft_export(d);
-		return (1);
-	}
-	quotes(d, -1);
-	if (!ft_strncmp(d->p->cmd, "unset", 5))
-	{
-		ft_unset(d);
-		return (1);
-	}
-	else if (!ft_strncmp(d->p->cmd, "cd", 2))
-	{
-		cd(d);
-		return (1);
-	}
-	return (0);
 }
 
 int	env_cmd(t_data *d)

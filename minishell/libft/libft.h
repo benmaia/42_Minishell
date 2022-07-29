@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 19:48:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/07 19:56:24 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:22:04 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ int		ft_isdigit(int arg);
 /*Replica of isprint*/
 /*Checks if the arg is a printable char*/
 int		ft_isprint(int arg);
+
+/*Checks if the arg is a space char*/
+int	ft_isspace(int arg);
+
+/*Checks if the str is just space chars*/
+int	ft_isspacestr(char *str);
 
 /*Replica of tolower*/
 /*Switches every Upper case chars to Lower case in a STR*/

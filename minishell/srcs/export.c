@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 00:29:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/27 23:43:50 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 22:28:48 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ int	check_duplicates(t_data *d)
 		tmp = tmp->next;
 	}
 	free (var);
-	g_err_value = FILE_DIR_ERR;
-	ft_putstr_fd("error: no such file or directory\n", 2);
 	return (0);
 }
 
@@ -146,7 +144,7 @@ void	ft_export(t_data *d)
 
 	if (ft_strncmp(d->buf, "export ", 7))
 	{
-		ft_putstr_fd("123error: cmd not found\n", 2);
+		ft_putstr_fd("error: cmd not found\n", 2);
 		g_err_value = CMD_NOT_FOUND_ERR;
 	}
 	else

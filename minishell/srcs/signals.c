@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 00:09:48 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 03:31:03 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 22:59:51 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,20 @@ static void	ctrl_c_block(int sig)
 	{
 		write(1, "\n", 1);
 		rl_on_new_line();
-		rl_replace_line("", -1);
+		rl_replace_line("", 0);
 	}
+}
+
+static void	ctrl_slash_block(int sig)
+{
+	(void) sig;
+	write(1, "Quit (core dumped)\n", 19);
+	rl_on_new_line();
+	rl_replace_line("", 0);
 }
 
 void	signal_block(void)
 {
 	signal(SIGINT, &ctrl_c_block);
+	signal(SIGQUIT, &ctrl_slash_block);
 }

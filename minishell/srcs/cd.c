@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:03:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/27 23:43:30 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 22:51:53 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "../inc/cd.h"
 #include <readline/tilde.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 /*Uses the function getcwd to get */
 /*the current path and print it*/
@@ -22,9 +24,9 @@ void	ft_pwd(t_data *d)
 	char	path[1040];
 
 	if (!ft_strncmp(d->p->cmd, "pwd ", 4)
-			|| !ft_strncmp(d->p->cmd, " pwd ", 5)
-			|| !ft_strncmp(d->p->cmd, "pwd\0", 5))
-		{
+		|| !ft_strncmp(d->p->cmd, " pwd ", 5)
+		|| !ft_strncmp(d->p->cmd, "pwd\0", 5))
+	{
 		if (getcwd(path, sizeof(path)) != NULL)
 		{
 			printf("%s\n", path);
@@ -77,6 +79,8 @@ void	cd_relative(t_cd *cd, int i)
 /*ch_dir function to change paths*/
 void	cd_path(t_cd *cd, int i)
 {
+	if (!cd->dest[1])
+		return ;
 	if (!ft_strncmp(cd->dest[1], "/", 1))
 		cd->valid_path = ft_strdup(cd->dest[1]);
 	else if (!ft_strncmp(cd->dest[1], "~", 1))
@@ -124,7 +128,9 @@ void	cd(t_data *d)
 	t_cd	cd;
 
 	cd.valid_path = NULL;
-	if (!ft_strncmp(d->p->cmd, "cd ~\0", 5))
+	if (!ft_strncmp(d->p->cmd, "cd ~\0", 5)
+		|| !ft_strncmp(d->p->cmd, "cd\0", 3)
+		|| !ft_strcmp(d->p->cmd, "cd "))
 		chdir(getenv("HOME"));
 	else if (!ft_strncmp(d->p->cmd, "cd ", 3))
 		cd_relative_path(d, &cd);

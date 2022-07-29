@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:40:25 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/27 23:38:59 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:07:57 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,27 @@ void	clean_extra_spaces(t_data *d, int i)
 	}
 }
 
+int	edge_cases(t_data *d)
+{
+	if (!ft_strcmp(d->p->cmd, "\"")
+		|| !ft_strcmp(d->p->cmd, "\'"))
+	{
+		printf("AQUI 123\n");
+		free (d->p->cmd);
+		d->p->cmd = ft_strdup("");
+	}
+	else if (!ft_strncmp(d->p->cmd, "||", 2)
+		|| !ft_strncmp(d->p->cmd, "| ", 2)
+		|| !ft_strncmp(d->p->cmd, "|\0", 2))
+	{
+		g_err_value = 2;
+		ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 2);
+	}
+	else
+		return (0);
+	return (1);
+}
+
 /*This function will check in every string*/
 /*position if it finds a quote, a $ sign or*/
 /*a space. If it finds a double quote it will*/
@@ -86,6 +107,8 @@ char	*quotes(t_data *d, int i)
 {
 	while (d->p->cmd[++i])
 	{
+		if (edge_cases(d))
+			return (NULL);
 		if (d->p->cmd[i] == '\"')
 			i = double_quotes(d, i);
 		else if (d->p->cmd[i] == '\'')
