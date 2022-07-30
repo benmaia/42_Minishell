@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 23:02:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 23:31:59 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:30:52 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ t_promp	*parser_promp(t_data *d, int i)
 	promp = NULL;
 	checker(d);
 	j = 0;
-	if (edge_quotes(d))
+	if (edge_quotes(d) || !d->buf[i + 1])
 		return (NULL);
-	while (d->buf[++i])
+	while (d->buf[i++])
 	{
 		if (d->buf[i] == '\"')
 			i = doublee(d, i);

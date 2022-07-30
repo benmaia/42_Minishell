@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 00:29:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 03:24:10 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 20:50:49 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void	ft_export(t_data *d)
 			ft_lst_strprint(d->env);
 		else
 		{
-			ft_putstr_fd("error: cmd not found\n", 2);
+			ft_putstr_fd("error: command not found\n", 2);
 			g_err_value = CMD_NOT_FOUND_ERR;
 		}
 	}

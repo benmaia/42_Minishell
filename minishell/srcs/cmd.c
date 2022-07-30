@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 23:16:30 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 04:43:49 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 21:18:00 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	path_tester_cmd(t_data *d, int i, char *tmp)
 			free (tmp);
 			return (0);
 		}
-		if (i >= (int)sizeof(tmp_p->path))
-			break ;
+		/*if (i >= (int) sizeof(tmp_p->path))*/
+			/*break ;*/
 	}
 	return (1);
 }
@@ -50,9 +50,11 @@ void	relative_cmd(t_data *d)
 	d->p->cmd_path = ft_strdup(tmp);
 	free (tmp);
 	free (tmp2);
+	if (!ft_strcmp(d->p->exe[0], "export"))
+		return ;
 	if (path_tester_cmd(d, -1, tmp))
 	{
-		ft_putstr_fd("error: command not found\n", 2);
+		ft_putstr_fd("123error: command not found\n", 2);
 		g_err_value = CMD_NOT_FOUND_ERR;
 	}
 }
@@ -91,7 +93,7 @@ void	find_path(t_data *d)
 		ft_putstr_fd("error: no such file or directory\n", 2);
 		g_err_value = FILE_DIR_ERR;
 		free (tmp);
-		exit (FILE_DIR_ERR) ;
+		exit (FILE_DIR_ERR);
 	}
 	d->p->path = ft_split(tmp, ':');
 	free (tmp);

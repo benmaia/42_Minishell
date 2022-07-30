@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 11:28:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 03:09:20 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 21:23:52 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,46 @@
 
 int	g_err_value;
 
-int main (int argc, char **argv, char **envp)
+void	exec_cmds(t_data *d, int i)
+{
+	t_promp	*tmp;
+
+	if (env_cmd(d))
+	{
+		tmp = d->p->next;
+		free (d->p->cmd);
+		free (d->p);
+		d->p = tmp;
+	}
+	else if (d->p->cmd[0] != '\0')
+	{
+		while (++i <= d->nbr_cmd)
+		{
+			piping(d, i);
+			tmp = d->p->next;
+			free (d->p->cmd);
+			free (d->p);
+			d->p = tmp;
+		}
+	}
+}
+
+void	parser_minishell(t_data *d)
+{
+	d->p = parser_promp(d, 0);
+	ft_prompcmd(d);
+}
+
+int	main(int argc, char **argv, char **envp)
 {
 	t_data	d;
-	int		i;
-	t_promp	*tmp;
 
 	(void) argc;
 	(void) argv;
 	d.env = init_env(envp);
-	d.buf = NULL;
 	while (1)
 	{
-		/*d.env = init_env(envp);*/
 		signal_prompt();
-		i = 0;
 		d.nbr_cmd = 0;
 		d.buf = readline (RED"MINISHELL > "RES);
 		if (!d.buf)
@@ -42,31 +67,11 @@ int main (int argc, char **argv, char **envp)
 		}
 		if (ft_strlen(d.buf) > 0)
 			add_history(d.buf);
-		d.p = parser_promp(&d, -1);
-		parsing_tokens(d.p, -1);
-		ft_prompcmd(&d);
+		parser_minishell(&d);
 		if (!d.p)
 			continue ;
-		else if (env_cmd(&d))
-		{
-				tmp = d.p->next;
-				free (d.p->cmd);
-				free (d.p);
-				d.p = tmp;
-		}
-		else if (d.p->cmd[0] != '\0')
-		{
-			while (++i <= d.nbr_cmd)
-			{
-				piping(&d, i);
-				tmp = d.p->next;
-				free (d.p->cmd);
-				free (d.p);
-				d.p = tmp;
-			}
-		}
+		exec_cmds(&d, 0);
 		free (d.buf);
-		/*ft_free_stack(&d.env);*/
 	}
 	ft_free_stack(&d.env);
 	return (0);

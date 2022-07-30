@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/29 22:10:50 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 16:43:15 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,6 @@ t_promp	*parser_promp(t_data *d, int i);
 /*#################### PIPES ##################*/
 
 void	piping(t_data *d, int x);
-
-void	change_dups(t_data *d);
 
 /*#################### PROMPT ##################*/
 
