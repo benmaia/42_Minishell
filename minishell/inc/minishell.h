@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 04:39:35 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/29 22:10:50 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,9 @@ int		absolute_cmd(t_data *d);
 void	signal_prompt(void);
 
 void	signal_block(void);
+
+/*#################### EXIT ##################*/
+
+void	ft_exit(t_data *d);
 
 #endif /* MINISHELL_H */

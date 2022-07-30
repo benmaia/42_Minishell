@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:43:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/27 21:45:57 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/29 23:58:00 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <ctype.h>
 #include <stdio.h>
 
-char	*check_var(t_data *d, int i, int j)
+static char	*check_var(t_data *d, int i, int j)
 {
 	char	*var;
 	char	*tmp;
@@ -64,6 +64,26 @@ void	expand_var(t_data *d, int i, int j)
 	free (var);
 }
 
+static void	error_value(t_data *d, int i)
+{
+	char	*tmp;
+	char	*tmp2;
+	char	*tmp3;
+	char	*itoaa;
+
+	ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
+	tmp = ft_substr(d->p->cmd, 0, i);
+	tmp2 = ft_substr(d->p->cmd, i, ft_strlen(d->p->cmd));
+	free (d->p->cmd);
+	itoaa = ft_itoa(g_err_value);
+	tmp3 = ft_strjoin(tmp, itoaa);
+	d->p->cmd = ft_strjoin(tmp3, tmp2);
+	free (tmp);
+	free (tmp2);
+	free (tmp3);
+	free (itoaa);
+}
+
 /*This function, removes the $ sign*/
 /*the string, saves the position where*/
 /*the enviroment variable starts and ends*/
@@ -71,22 +91,12 @@ void	expand_var(t_data *d, int i, int j)
 /*so the expansion can be made*/
 void	dollar_var(t_data *d, int i)
 {
-	int		j;
-	char	*tmp;
-	char	*itoaa;
+	int	j;
 
 	ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
 	j = i;
 	if (d->p->cmd[i] == '?')
-	{
-		ft_memmove(&d->p->cmd[i], &d->p->cmd[i + 1], ft_strlen(d->p->cmd) - 1);
-		tmp = ft_strdup(d->p->cmd);
-		free (d->p->cmd);
-		itoaa = ft_itoa(g_err_value);
-		d->p->cmd = ft_strjoin(tmp, itoaa);
-		free (tmp);
-		free (itoaa);
-	}
+		error_value(d, i);
 	else if (!isalpha(d->p->cmd[i]))
 	{
 		ft_putstr_fd("error: no such file or directory:\n", 2);
@@ -96,7 +106,7 @@ void	dollar_var(t_data *d, int i)
 	else
 	{
 		while (d->p->cmd[i] != ' ' && d->p->cmd[i] != '\"'
-			&& d->p->cmd[i] != '\'' && d->p->cmd[i])
+			&& d->p->cmd[i] != '\'' && d->p->cmd[i] && d->p->cmd[i] != '$')
 				i++;
 		expand_var(d, i, j);
 	}

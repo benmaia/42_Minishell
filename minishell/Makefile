@@ -20,6 +20,7 @@ SRC		=	$(SRC_DIR)/pipes.c \
 				$(SRC_DIR)/expand_var.c \
 				$(SRC_DIR)/echo.c\
 				$(SRC_DIR)/cd.c		\
+				$(SRC_DIR)/exit.c		\
 				$(SRC_DIR)/parser_quotes.c \
 				$(SRC_DIR)/parser_lines.c \
 				$(SRC_DIR)/parser_tokens.c \

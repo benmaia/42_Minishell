@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:08:31 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 22:53:25 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 03:07:39 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,36 +49,23 @@ void	cmds_exec(t_data *d)
 int	env_cmd(t_data *d)
 {
 	if (!ft_strncmp(d->p->cmd, "export", 6))
-	{
 		ft_export(d);
-		return (1);
-	}
 	quotes(d, -1);
 	if (!ft_strncmp(d->p->cmd, "unset", 5))
-	{
 		ft_unset(d);
-		return (1);
-	}
 	else if (!ft_strncmp(d->p->cmd, "cd", 2))
-	{
 		cd(d);
-		return (1);
-	}
-	else if (!ft_strncmp(d->p->cmd, "exit\0", 5))
-	{
-		free (d->buf);
-		ft_free_stack(&d->env);
-		exit (NO_ERROR);
-	}
-	return (0);
+	else if (!ft_strncmp(d->p->cmd, "exit", 4))
+		ft_exit(d);
+	else
+		return (0);
+	return (1);
 }
 
 int	built_in(t_data *d)
 {
 	signal_block();
-	if (!ft_strncmp(d->p->cmd, "unset", 5))
-		ft_unset(d);
-	else if (!ft_strncmp(d->p->cmd, "pwd", 3))
+	if (!ft_strncmp(d->p->cmd, "pwd", 3))
 		ft_pwd(d);
 	else if (!ft_strncmp(d->p->cmd, "env", 3))
 		ft_env(d);

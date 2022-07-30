@@ -6,11 +6,13 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 00:29:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 22:28:48 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 03:24:10 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /*It's a function made to when it found a quote*/
 /*just delete the quote of the string and keeps*/
@@ -144,8 +146,13 @@ void	ft_export(t_data *d)
 
 	if (ft_strncmp(d->buf, "export ", 7))
 	{
-		ft_putstr_fd("error: cmd not found\n", 2);
-		g_err_value = CMD_NOT_FOUND_ERR;
+		if (!ft_strcmp(d->buf, "export"))
+			ft_lst_strprint(d->env);
+		else
+		{
+			ft_putstr_fd("error: cmd not found\n", 2);
+			g_err_value = CMD_NOT_FOUND_ERR;
+		}
 	}
 	else
 	{
