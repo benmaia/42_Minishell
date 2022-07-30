@@ -6,11 +6,10 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:37:13 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 03:55:04 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:33:32 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/echo.h"
 #include "../inc/minishell.h"
 
 void	echo_line(t_data *d)

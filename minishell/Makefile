@@ -26,10 +26,10 @@ SRC		=	$(SRC_DIR)/pipes.c \
 				$(SRC_DIR)/parser_tokens.c \
 				$(SRC_DIR)/prompt_ft.c \
 				$(SRC_DIR)/p.c \
+				$(SRC_DIR)/utils.c \
 				$(SRC_DIR)/cmd.c \
 				$(SRC_DIR)/exec_cmd.c \
-				$(SRC_DIR)/free_parser.c \
-				$(SRC_DIR)/declare_structs.c
+				$(SRC_DIR)/free_parser.c
 
 OBJ			=	$(patsubst %.c, %.o, $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC)))
 

@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:43:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/29 23:58:00 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:36:56 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*check_var(t_data *d, int i, int j)
 	char	*var;
 	char	*tmp;
 
-	var = ft_substr(d->p->cmd, j, i - j);
+	var = ft_substr(d->p->cmd, j, i - j - 1);
 	if (!var || !ft_check_var(d->env, var))
 	{
 		tmp = ft_substr(d->p->cmd, 0, j);

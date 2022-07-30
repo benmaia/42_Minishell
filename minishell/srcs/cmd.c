@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 23:16:30 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 21:18:00 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:36:29 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	path_tester_cmd(t_data *d, int i, char *tmp)
 			free (tmp);
 			return (0);
 		}
-		/*if (i >= (int) sizeof(tmp_p->path))*/
-			/*break ;*/
 	}
 	return (1);
 }
@@ -54,7 +52,7 @@ void	relative_cmd(t_data *d)
 		return ;
 	if (path_tester_cmd(d, -1, tmp))
 	{
-		ft_putstr_fd("123error: command not found\n", 2);
+		ft_putstr_fd("error: command not found\n", 2);
 		g_err_value = CMD_NOT_FOUND_ERR;
 	}
 }
@@ -82,6 +80,8 @@ void	find_path(t_data *d)
 
 	tmp = NULL;
 	env_tmp = d->env;
+	if (!d->p->exe[0] || !ft_strncmp(d->p->exe[0], "/", 1))
+		return ;
 	while (env_tmp)
 	{
 		if (!ft_strncmp((char *)env_tmp->content, "PATH=", 5))

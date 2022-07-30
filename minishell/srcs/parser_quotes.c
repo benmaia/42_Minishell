@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:40:25 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 17:24:17 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:27:17 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	simple_quotes(t_data *d, int i)
 {
 	char	*tmp;
-	int	j;
+	int		j;
 
 	j = i;
 	i++;
@@ -40,7 +40,7 @@ int	simple_quotes(t_data *d, int i)
 int	double_quotes(t_data *d, int i)
 {
 	char	*tmp;
-	int	j;
+	int		j;
 
 	j = i;
 	while (d->p->cmd[++i] != '\"' && d->p->cmd[i])

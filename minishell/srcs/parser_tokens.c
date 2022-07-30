@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 21:47:01 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 04:10:37 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:24:48 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,6 @@ static int	doublee(char *d, int i)
 	while (d[i] != '\"' && d[i])
 		i++;
 	return (i);
-}
-
-static int	tokenizer(char c)
-{
-	if (c == '>')
-		return (1);
-	else if (c == '<')
-		return (1);
-	else
-		return (0);
 }
 
 static void	checker(t_promp *tmp, int i)

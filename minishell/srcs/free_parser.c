@@ -6,28 +6,11 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:26:16 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/25 16:20:40 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:26:53 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-/*void	free_prompt(t_promp **promp)*/
-/*{*/
-	/*t_promp	*next;*/
-
-	/*if (!(*promp))*/
-		/*return ;*/
-	/*while (*promp)*/
-	/*{*/
-		/*next = (*promp)->next;*/
-		/*free ((*promp)->cmd);*/
-		/*free ((*promp)->pre_token);*/
-		/*free ((*promp));*/
-		/*(*promp) = next;*/
-	/*}*/
-	/**promp = NULL;*/
-/*}*/
 
 void	free_prompt(t_promp **promp)
 {

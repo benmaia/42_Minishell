@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 00:29:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 20:50:49 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:47:40 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,37 +99,24 @@ int	checker(t_data *d, int i)
 	return (0);
 }
 
-/*Checks if the enviroment variable given*/
-/*on input already exists, if it does, it will*/
-/*clean it's value and substitute for the new one*/
-/*and retuns 1, if it doesn't exists it will return 0*/
-/*so the ft_export can create and add a new elemnt on*/
-/*the list with the new variable and it's value*/
-int	check_duplicates(t_data *d)
+static void	else_norminette(t_data *d)
 {
-	t_list	*tmp;
-	char	*var;
-	int		i;
+	t_list	*new_var;
 
-	i = -1;
-	while (d->buf[++i])
-		if (d->buf[i] == '=')
-			break ;
-	var = ft_substr(d->buf, 0, i);
-	tmp = d->env;
-	while (tmp)
+	check_spaces(d, -1);
+	if (checker(d, -1))
 	{
-		if (!ft_strncmp(tmp->content, var, ft_strlen(var)))
+		if (export_check_duplicates(d))
 		{
-			free (var);
-			free (tmp->content);
-			tmp->content = ft_strdup(d->buf);
-			return (1);
+			myfree((void *)&d->buf);
+			g_err_value = NO_ERROR;
+			return ;
 		}
-		tmp = tmp->next;
+		new_var = ft_lstnew(ft_strdup(d->buf));
+		ft_lstadd_back(&d->env, new_var);
+		myfree((void *)&d->buf);
+		g_err_value = NO_ERROR;
 	}
-	free (var);
-	return (0);
 }
 
 /*Replicates the exportion function on bash*/
@@ -142,8 +129,6 @@ int	check_duplicates(t_data *d)
 /*returns 0 or changes it's value if it returns 1*/
 void	ft_export(t_data *d)
 {
-	t_list	*new_var;
-
 	if (ft_strncmp(d->buf, "export ", 7))
 	{
 		if (!ft_strcmp(d->buf, "export"))
@@ -155,20 +140,5 @@ void	ft_export(t_data *d)
 		}
 	}
 	else
-	{
-		check_spaces(d, -1);
-		if (checker(d, -1))
-		{
-			if (check_duplicates(d))
-			{
-				free (d->buf);
-				g_err_value = NO_ERROR;
-				return ;
-			}
-			new_var = ft_lstnew(ft_strdup(d->buf));
-			ft_lstadd_back(&d->env, new_var);
-			free (d->buf);
-			g_err_value = NO_ERROR;
-		}
-	}
+		else_norminette(d);
 }

@@ -6,11 +6,10 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:50:14 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 20:51:42 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:33:15 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/env.h"
 #include "../inc/minishell.h"
 #include <stdio.h>
 
@@ -61,7 +60,7 @@ void	ft_free_stack(t_list **list)
 t_list	*init_env(char **envp)
 {
 	t_list	*env;
-	int i;
+	int		i;
 
 	i = 0;
 	env = ft_lstnew(ft_strdup(envp[i]));

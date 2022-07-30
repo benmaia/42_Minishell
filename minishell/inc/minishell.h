@@ -6,7 +6,7 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 16:43:15 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:34:58 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@
 # define CTRL_C_ERR 130
 # define CMD_NOT_FOUND_ERR 127
 
+typedef struct s_cd {
+	char	path[1040];
+	char	*tmp;
+	char	*valid_path;
+	char	**dest;
+}	t_cd;
+
 typedef struct s_pipes {
 	int		pipes[2];
 	pid_t	pid;
@@ -71,6 +78,8 @@ extern int	g_err_value;
 
 /*#################### BUILT INS ##################*/
 
+void	cd(t_data *d);
+
 int		env_cmd(t_data *d);
 
 int		built_in(t_data *d);
@@ -87,11 +96,15 @@ void	ft_unset(t_data *d);
 
 void	ft_export(t_data *d);
 
+int		export_check_duplicates(t_data *d);
+
 /*#################### PARSER ##################*/
 
 t_list	*init_env(char **envp);
 
 void	parsing_tokens(t_promp *p, int i);
+
+int		tokenizer(char c);
 
 char	*quotes(t_data *d, int i);
 
@@ -131,11 +144,13 @@ void	free_prompt(t_promp **promp);
 
 void	ft_free(void *ptr);
 
+void	myfree(void **ptr);
+
 /*#################### COMMANDS ##################*/
 
 void	find_path(t_data *d);
 
-void	cmds_exec(t_data *d);
+void	cmds_exec(t_data *d, int i);
 
 void	relative_cmd(t_data *d);
 

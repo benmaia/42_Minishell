@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 19:48:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 17:22:04 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:30:44 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ int		ft_isdigit(int arg);
 int		ft_isprint(int arg);
 
 /*Checks if the arg is a space char*/
-int	ft_isspace(int arg);
+int		ft_isspace(int arg);
 
 /*Checks if the str is just space chars*/
-int	ft_isspacestr(char *str);
+int		ft_isspacestr(char *str);
 
 /*Replica of tolower*/
 /*Switches every Upper case chars to Lower case in a STR*/
@@ -114,7 +114,7 @@ char	*ft_strchr(const char *str, int c);
 
 /*Replica of strcmp*/
 /*Compares S1 and S2*/
-int	ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 
 /*Replica of strncmp*/
 /*Compares N characters form S1 and S2*/

@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 11:28:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 21:23:52 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 21:37:06 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ void	parser_minishell(t_data *d)
 	ft_prompcmd(d);
 }
 
+void	myfree(void **ptr)
+{
+	if (*ptr)
+		free (*ptr);
+	*ptr = NULL;
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	d;
@@ -71,7 +78,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!d.p)
 			continue ;
 		exec_cmds(&d, 0);
-		free (d.buf);
+		myfree((void *)&d.buf);
 	}
 	ft_free_stack(&d.env);
 	return (0);

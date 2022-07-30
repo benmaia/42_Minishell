@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:08:31 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 03:07:39 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/30 22:22:57 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,17 @@
 #include <string.h>
 #include <unistd.h>
 
-void	cmds_exec(t_data *d)
+void	cmds_exec(t_data *d, int i)
 {
 	t_list	*tmp;
-	int		i;
 
 	d->p->envp = (char **)malloc (sizeof(char *) * (ft_lstsize(d->env) + 1));
 	d->p->exe = ft_split(d->p->cmd, ' ');
 	find_path(d);
-	i = 0;
 	tmp = d->env;
 	while (tmp)
 	{
-		d->p->envp[i] = ft_strdup((char *)tmp->content);
-		i++;
+		d->p->envp[i++] = ft_strdup((char *)tmp->content);
 		tmp = tmp->next;
 	}
 	d->p->envp[i] = NULL;
