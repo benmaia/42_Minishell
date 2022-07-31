@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 11:28:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 21:37:06 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 13:11:06 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	exec_cmds(t_data *d, int i)
 	}
 	else if (d->p->cmd[0] != '\0')
 	{
+		d->pp = malloc(sizeof(t_pipes));
 		while (++i <= d->nbr_cmd)
 		{
 			piping(d, i);
@@ -44,6 +45,8 @@ void	exec_cmds(t_data *d, int i)
 
 void	parser_minishell(t_data *d)
 {
+	if (ft_strlen(d->buf) > 0)
+		add_history(d->buf);
 	d->p = parser_promp(d, 0);
 	ft_prompcmd(d);
 }
@@ -72,13 +75,12 @@ int	main(int argc, char **argv, char **envp)
 			printf("exit\n");
 			exit(1);
 		}
-		if (ft_strlen(d.buf) > 0)
-			add_history(d.buf);
 		parser_minishell(&d);
 		if (!d.p)
 			continue ;
 		exec_cmds(&d, 0);
 		myfree((void *)&d.buf);
+		free (d.pp);
 	}
 	ft_free_stack(&d.env);
 	return (0);

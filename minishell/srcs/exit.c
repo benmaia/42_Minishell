@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 22:09:26 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:15:58 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 13:12:01 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	ft_exit(t_data *d)
 
 	if (!ft_strcmp(d->p->cmd, "exit"))
 	{
-		free (d->buf);
-		d->buf = NULL;
+		myfree((void *) &d->buf);
 		ft_free_stack(&d->env);
 		exit(g_err_value);
 	}
