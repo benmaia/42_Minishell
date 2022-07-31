@@ -6,13 +6,13 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 21:47:01 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:24:48 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:00:14 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <stdio.h>
+#include "minishell.h"
 
+/*Simple quote parser*/
 static int	simple(char *d, int i)
 {
 	i++;
@@ -21,6 +21,7 @@ static int	simple(char *d, int i)
 	return (i);
 }
 
+/*Double quote parser*/
 static int	doublee(char *d, int i)
 {
 	i++;
@@ -29,6 +30,7 @@ static int	doublee(char *d, int i)
 	return (i);
 }
 
+/*Special Chars checker for Seg Fault*/
 static void	checker(t_promp *tmp, int i)
 {
 	if (tmp->cmd[i] == '&'
@@ -62,6 +64,8 @@ static void	parse_exec(t_promp *tmp, int i, char *tmpstr)
 	i = -1;
 }
 
+/*Parsing for tokens, to store then*/
+/*in a different variable, and clean the command*/
 void	parsing_tokens(t_promp *p, int i)
 {
 	t_promp	*tmp;

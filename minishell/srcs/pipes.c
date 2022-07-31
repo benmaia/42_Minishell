@@ -6,15 +6,20 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 01:28:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/31 13:03:37 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:05:00 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <stdio.h>
-#include <sys/wait.h>
-#include <unistd.h>
+#include "minishell.h"
 
+/*Changes the STDIN and STDOUT of the*/
+/*program to where it needs to be*/
+/*If it's the 1st command, closes the pipe 0*/
+/*to wait for manual input if need it*/
+/*if it's not the first then STDIN will be*/
+/*changed to an fd to read the output*/
+/*of the command before, the output is changed*/
+/*to the pipe 1 if it's not the last command*/
 void	changing_dup(t_data *d, int x, int i)
 {
 	if (x == 1)
@@ -33,6 +38,9 @@ void	changing_dup(t_data *d, int x, int i)
 		cmds_exec(d, 0);
 }
 
+/*Creates the pipe and the fork for the*/
+/*child process to run, also change the signals*/
+/*from prompt to block*/
 void	piping(t_data *d, int x)
 {
 	int	i;

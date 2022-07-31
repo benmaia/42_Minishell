@@ -6,14 +6,15 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:40:25 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:27:17 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 14:58:42 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <stdio.h>
-#include <sys/types.h>
+#include "minishell.h"
 
+/*It ignores everything between the simple quotes*/
+/*and removes them from the command, to be printed*/
+/*as it should*/
 int	simple_quotes(t_data *d, int i)
 {
 	char	*tmp;
@@ -71,12 +72,12 @@ void	clean_extra_spaces(t_data *d, int i)
 	}
 }
 
+/*Looks for edge cases to protect from crashes*/
 int	edge_cases(t_data *d)
 {
 	if (!ft_strcmp(d->p->cmd, "\"")
 		|| !ft_strcmp(d->p->cmd, "\'"))
 	{
-		printf("AQUI 123\n");
 		free (d->p->cmd);
 		d->p->cmd = ft_strdup("");
 	}

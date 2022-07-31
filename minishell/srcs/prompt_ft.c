@@ -6,13 +6,15 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:15:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/28 04:14:59 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:05:53 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <stdio.h>
+#include "minishell.h"
 
+/*Stores the command in the cmd*/
+/*variable to send it to parser*/
+/*and execve*/
 void	ft_prompcmd(t_data *d)
 {
 	t_promp	*tmp;

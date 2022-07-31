@@ -6,16 +6,21 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:08:31 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:22:57 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 14:47:35 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#include "minishell.h"
 
+/*If it's not a built-in then it will*/
+/*return (1) and enter in this function*/
+/*where I create a copy of the env but to*/
+/*a double pointer to send it to execve*/
+/*after I'll split the command in a double*/
+/*pointer, also to send it to execve*/
+/*and then it will try to find the right*/
+/*command path to send it also to execve*/
+/*if exevce fails, have an exit with protection*/
 void	cmds_exec(t_data *d, int i)
 {
 	t_list	*tmp;
@@ -40,9 +45,16 @@ void	cmds_exec(t_data *d, int i)
 	else if (absolute_cmd(d))
 		relative_cmd(d);
 	i = execve(d->p->cmd_path, d->p->exe, d->p->envp);
-	exit(127);
+	exit(CMD_NOT_FOUND_ERR);
 }
 
+/*Checks if it's export command because the*/
+/*export have a different parser then the others*/
+/*if it's not it will do a general parsing for all*/
+/*the commands with the function quotes*/
+/*and checks if it's a built-in, if it is*/
+/*it runs the command and return (0), otherwise*/
+/*it will return (1)*/
 int	env_cmd(t_data *d)
 {
 	if (!ft_strncmp(d->p->cmd, "export", 6))
@@ -59,6 +71,10 @@ int	env_cmd(t_data *d)
 	return (1);
 }
 
+/*Changes the signals to block command signals*/
+/*and checks if it's a built-in, if it is*/
+/*it runs the command and return (0), otherwise*/
+/*it will return (1)*/
 int	built_in(t_data *d)
 {
 	signal_block();

@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 21:52:45 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:24:24 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:08:36 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	export_check_duplicates(t_data *d)
 	return (0);
 }
 
+/*Checks if there is a redirection*/
+/*or heredoc, to to the parser token*/
 int	tokenizer(char c)
 {
 	if (c == '>')

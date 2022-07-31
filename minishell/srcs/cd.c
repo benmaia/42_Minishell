@@ -6,15 +6,11 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 16:03:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:33:43 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 14:32:34 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <readline/tilde.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "minishell.h"
 
 /*Uses the function getcwd to get */
 /*the current path and print it*/

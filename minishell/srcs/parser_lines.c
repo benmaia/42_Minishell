@@ -6,13 +6,11 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 23:02:59 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 17:30:52 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 14:56:59 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <readline/readline.h>
-#include <stdio.h>
+#include "minishell.h"
 
 /*Just skips everything until finding*/
 /*a double quote, and returns it's position*/
@@ -34,6 +32,8 @@ static int	simple(t_data *d, int i)
 	return (i);
 }
 
+/*Checks if the buf it's NULL*/
+/*if it is gives an error and exits*/
 static void	checker(t_data *d)
 {
 	if (!d->buf)
@@ -43,6 +43,9 @@ static void	checker(t_data *d)
 	}
 }
 
+/*Check special cases in the beggining*/
+/*of the command and protects against*/
+/*segmentation faults, life saver*/
 int	edge_quotes(t_data *d)
 {
 	int	i;

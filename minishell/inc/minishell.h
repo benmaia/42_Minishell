@@ -6,19 +6,20 @@
 /*   By: pnoronha <pnoronha@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 17:39:50 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:34:58 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:08:47 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../libft/libft.h"
-# include <stdlib.h>
+# include "libft.h"
+# include <ctype.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/types.h>
-# include<sys/wait.h>
+# include <sys/wait.h>
 
 // Colors
 # define BLACK "\e[1;30m"
@@ -139,10 +140,6 @@ void	initialize_structs(t_data *d, char **envp);
 /*#################### FREE ##################*/
 
 void	ft_free_stack(t_list **list);
-
-void	free_prompt(t_promp **promp);
-
-void	ft_free(void *ptr);
 
 void	myfree(void **ptr);
 

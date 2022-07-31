@@ -6,13 +6,18 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 23:16:30 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:36:29 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 14:39:46 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <stdio.h>
+#include "minishell.h"
 
+/*This function, will test a PATH with*/
+/*the given command until it gets the*/
+/*right path, or until there is no more*/
+/*PATH to check with, if it find the*/
+/*correct PATH, it will save that command*/
+/*in the d->p->cmd to send it to execve*/
 int	path_tester_cmd(t_data *d, int i, char *tmp)
 {
 	t_promp	*tmp_p;
@@ -38,6 +43,10 @@ int	path_tester_cmd(t_data *d, int i, char *tmp)
 	return (1);
 }
 
+/*If the absolute command function*/
+/*return (0), then we will concatenate*/
+/*a '/' to pass it to the path tester*/
+/*function to check if the command exists*/
 void	relative_cmd(t_data *d)
 {
 	char	*tmp;
@@ -57,6 +66,14 @@ void	relative_cmd(t_data *d)
 	}
 }
 
+/*If it's an absolute command*/
+/*it won't attatch a PATH behind*/
+/*to test it, it just tests command*/
+/*with the given path, if its wrong*/
+/*gives an error and returns (0), if*/
+/*it's not an absolute command it will*/
+/*also return (0), and if it is an absolute*/
+/*command it returns (1)*/
 int	absolute_cmd(t_data *d)
 {
 	int	i;
@@ -73,6 +90,11 @@ int	absolute_cmd(t_data *d)
 	return (0);
 }
 
+/*This function will grab the PATH*/
+/*on the element with the PATH store*/
+/*and store it in a double pointer*/
+/*to be easier to attacht paths to the*/
+/*command, so check it the paths is correct*/
 void	find_path(t_data *d)
 {
 	char	*tmp;

@@ -6,13 +6,11 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 00:29:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:47:40 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 14:53:35 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "minishell.h"
 
 /*It's a function made to when it found a quote*/
 /*just delete the quote of the string and keeps*/
@@ -99,6 +97,8 @@ int	checker(t_data *d, int i)
 	return (0);
 }
 
+/*Part 2 of ft_export, it checks if there*/
+/*is any duplicates or errors in the syntax*/
 static void	else_norminette(t_data *d)
 {
 	t_list	*new_var;

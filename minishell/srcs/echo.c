@@ -6,12 +6,13 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:37:13 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:33:32 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 14:41:28 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "minishell.h"
 
+/*Prints the str with a \n*/
 void	echo_line(t_data *d)
 {
 	if (!ft_strncmp(d->p->cmd, "echo\0", 5))
@@ -26,6 +27,7 @@ void	echo_line(t_data *d)
 	}
 }
 
+/*Prints the str with no \n*/
 void	echo_noline(t_data *d)
 {
 	if (!ft_strncmp(d->p->cmd, "echo -n\0", 8))

@@ -6,12 +6,11 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:57:06 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/27 23:44:05 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:07:56 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <stdio.h>
+#include "minishell.h"
 
 /*Checks if the size of the content (x)*/
 /*or the variable (var) and returns the */

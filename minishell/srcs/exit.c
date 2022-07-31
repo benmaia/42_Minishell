@@ -6,13 +6,15 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 22:09:26 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/31 13:12:01 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 14:49:50 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <stdio.h>
+#include "minishell.h"
 
+/*Same as the error_handler_exit, part2*/
+/*Handles the exit errors, more then 1*/
+/*argument, and a non int argument*/
 char	*error_exit(char *tmp, int i)
 {
 	if (!ft_isdigit(tmp[i + 1]))
@@ -30,6 +32,8 @@ char	*error_exit(char *tmp, int i)
 	return (tmp);
 }
 
+/*Handles the exit errors, more then 1*/
+/*argument, and a non int argument*/
 static char	*error_handler_exit(t_data *d, int i)
 {
 	char	*tmp;
@@ -46,6 +50,9 @@ static char	*error_handler_exit(t_data *d, int i)
 	return (tmp);
 }
 
+/*When this function is called*/
+/*it frees all the allocated memory*/
+/*before exits the program*/
 void	ft_exit(t_data *d)
 {
 	char	*tmp;

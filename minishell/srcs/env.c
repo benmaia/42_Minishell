@@ -6,12 +6,11 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:50:14 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:33:15 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 14:41:39 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <stdio.h>
+#include "minishell.h"
 
 /*It checks if the variable passed on the prompt*/
 /*exists, and if it does, it return his value*/

@@ -6,14 +6,14 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:43:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/30 22:36:56 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 14:52:28 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-#include <ctype.h>
-#include <stdio.h>
+#include "minishell.h"
 
+/*If the variable exists then it will*/
+/*return his value, otherwhise returns NULL*/
 static char	*check_var(t_data *d, int i, int j)
 {
 	char	*var;
@@ -64,6 +64,10 @@ void	expand_var(t_data *d, int i, int j)
 	free (var);
 }
 
+/*Expands the $? to the error value*/
+/*that the global variable brings*/
+/*it passes from int to a str and then*/
+/*concatenate to be delievered*/
 static void	error_value(t_data *d, int i)
 {
 	char	*tmp;
