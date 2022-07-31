@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 11:28:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/31 14:30:57 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:45:48 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		signal_prompt();
 		d.nbr_cmd = 0;
-		d.buf = readline (RED"MINISHELL > "RES);
+		d.buf = readline (PURPLE"benmaia > "RES);
 		if (!d.buf)
 		{
 			printf("exit\n");
