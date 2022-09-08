@@ -54,7 +54,7 @@ More info on the subject itself!!**<a href="https://github.com/benmaia/42_Minish
 
 <p> Here is an example:</p>
 
-<img src="" width="1000" height="450">
+<img src="https://cdn.discordapp.com/attachments/461563270411714561/1017449918744502323/ezgif.com-gif-maker.gif">
 </br>
 <p> Minishell OK ✅</p>
 </br>
