@@ -30,7 +30,7 @@ SRC		=	$(SRC_DIR)/pipes.c \
 				$(SRC_DIR)/cmd.c \
 				$(SRC_DIR)/exec_cmd.c
 
-OBJ			=	$(patsubst %.c, %.o, $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC)))
+#OBJ			=	$(patsubst %.c, %.o, $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC)))
 
 ifeq ($(shell uname), Linux)
 	READLINE_DIR	=	/usr/include/readline
@@ -43,20 +43,20 @@ CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
 INCLUDES	=	-I$(INC_DIR) -I$(LIBFT_DIR) -I$(READLINE_DIR)
 LINKS		=	-L$(LIBFT_DIR) -lft -L$(READLINE_DIR) -lreadline
 
-.SILENT		=	$(OBJ)
+#.SILENT		=	$(OBJ)
 
 all: mklibft $(BUILD_DIR) $(NAME)
 
 readline:
 	@../libreadline.sh
 
-$(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(^) -o $(@) $(LINKS)
+$(NAME): $(SRC)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(^) -o $(@) $(LINKS)
 	@echo "$(GREEN)[ Minishell is ready to use! ] $(RESET)"
 
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c | $(BUILD_DIR)
-	@echo "$(GREEN)[ Creating $(notdir $@) ]$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $(^) -o $(@)
+#$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c | $(BUILD_DIR)
+	#@echo "$(GREEN)[ Creating $(notdir $@) ]$(RESET)"
+	#@$(CC) $(CFLAGS) $(INCLUDES) -c $(^) -o $(@)
 
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)

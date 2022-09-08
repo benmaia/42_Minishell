@@ -6,11 +6,11 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:40:25 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/31 14:58:42 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/30 01:59:33 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 /*It ignores everything between the simple quotes*/
 /*and removes them from the command, to be printed*/

@@ -6,11 +6,11 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:43:18 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/07/31 14:52:28 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:21:37 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 /*If the variable exists then it will*/
 /*return his value, otherwhise returns NULL*/
